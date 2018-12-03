@@ -1,0 +1,24 @@
+{"taiji.io/currency/send/1.0.0":{"schema": {
+        "title": "Send Currency",
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "toAddress": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          },
+          "unit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "currency",
+          "toAddress",
+          "amount",
+          "unit"
+        ]
+      },"scope": "t.w"}}

@@ -1,0 +1,7 @@
+
+# Singleton service factory configuration/IoC injection
+singletons:
+# StartupHookProvider implementations, there are one to many and they are called in the same sequence defined.
+- com.networknt.server.StartupHookProvider:
+  # registry all service handlers by from annotations
+  - com.networknt.rpc.router.RpcStartupHookProvider
