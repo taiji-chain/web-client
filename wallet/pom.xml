@@ -20,7 +20,7 @@
         <version.undertow>2.0.11.Final</version.undertow>
         <version.json-schema-validator>0.1.23</version.json-schema-validator>
         <version.fastscanner>2.18.1</version.fastscanner>
-        
+        <version.blockchain>1.0.0</version.blockchain>
         
         
         
@@ -64,6 +64,17 @@
             <artifactId>json-schema-validator</artifactId>
             <version>${version.json-schema-validator}</version>
         </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>taiji-crypto</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>event-common</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

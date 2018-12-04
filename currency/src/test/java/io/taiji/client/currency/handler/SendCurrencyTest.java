@@ -35,7 +35,7 @@ public class SendCurrencyTest {
 
     @Test
     public void testSendCurrency() throws ClientException, ApiException {
-        /*
+
         final Http2Client client = Http2Client.getInstance();
         final CountDownLatch latch = new CountDownLatch(1);
         final ClientConnection connection;
@@ -44,12 +44,13 @@ public class SendCurrencyTest {
         } catch (Exception e) {
             throw new ClientException(e);
         }
+        final String s = "{\"host\":\"taiji.io\",\"service\":\"currency\",\"action\":\"send\",\"version\":\"1.0.0\",\"data\":{\"currency\":\"taiji\",\"address\":\"0000FbBf26f6437AB8e3280A34743120dcB49E8c\",\"password\":\"123456\",\"toAddress\":\"000082bB17A3a81bC48241AA9a568B3b1e18f26B\",\"amount\":\"1\",\"unit\":\"TAIJI\"}}";
         final AtomicReference<ClientResponse> reference = new AtomicReference<>();
         try {
             ClientRequest request = new ClientRequest().setPath("/api/json").setMethod(Methods.POST);
             request.getRequestHeaders().put(Headers.CONTENT_TYPE, "application/json");
             request.getRequestHeaders().put(Headers.TRANSFER_ENCODING, "chunked");
-            connection.sendRequest(request, client.createClientCallback(reference, latch, "request body to be replaced"));
+            connection.sendRequest(request, client.createClientCallback(reference, latch, s));
             latch.await();
         } catch (Exception e) {
             logger.error("Exception: ", e);
@@ -59,8 +60,9 @@ public class SendCurrencyTest {
         }
         int statusCode = reference.get().getResponseCode();
         String body = reference.get().getAttachment(Http2Client.RESPONSE_BODY);
+        System.out.println("body = " + body);
         Assert.assertEquals(200, statusCode);
         Assert.assertNotNull(body);
-        */
+
     }
 }

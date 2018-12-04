@@ -8,6 +8,7 @@ dist/
 .classpath
 .settings
 .metadata/
+.attach_pid*
 *.iml
 *.log
 *.tmp

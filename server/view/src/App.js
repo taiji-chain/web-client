@@ -1,28 +1,124 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import Home from './components/Home';
+import Balance from './components/Balance';
+import Faucet from './components/Faucet';
+import Transaction from './components/Transaction';
+import ResponsiveDrawer from './components/ResponsiveDrawer';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    state = {
+        address: '',
+        amount: '',
+        currency: 'taiji',
+        unit: 'TAIJI',
+        currencyMap: undefined,
+        transactions: undefined
+    };
+
+    handleChange = name => event => {
+        //console.log(name, event.target.value);
+        this.setState({
+            [name]: event.target.value,
+        });
+    };
+
+    getBalance = async (e) => {
+        e.preventDefault();
+        //console.log('address', this.state.address);
+        const api_call = await fetch(`/faucet/${this.state.address}`);
+        const data = await api_call.json();
+        //console.log(data);
+        if (data) {
+            this.setState({
+                currencyMap: data
+            });
+        } else {
+            this.setState({
+                currencyMap: undefined
+            });
+        }
+    };
+
+    postFaucet = async (e) => {
+        e.preventDefault();
+        const settings = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                amount: this.state.amount,
+                currency: this.state.currency,
+                unit: this.state.unit
+            })
+        };
+
+        const api_call = await fetch(`/faucet/${this.state.address}`, settings)
+        const data = await api_call.json();
+        if (data) {
+            this.setState({
+                currencyMap: data
+            });
+        } else {
+            this.setState({
+                currencyMap: undefined
+            });
+        }
+    };
+
+    getTransaction = async (e) => {
+        e.preventDefault();
+        const api_call = await fetch(`/faucet/${this.state.address}/${this.state.currency}`);
+        const data = await api_call.json();
+        //console.log(data);
+        if (data) {
+            this.setState({
+                transactions: data
+            });
+        } else {
+            this.setState({
+                transactions: undefined
+            });
+        }
+    };
+
+
+    render() {
+        return (
+            <BrowserRouter>
+                <ResponsiveDrawer>
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/balance" render = {
+                            props => <Balance {...props}
+                                              getBalance={this.getBalance}
+                                              handleChange={this.handleChange}
+                                              address={this.state.address}
+                                              currencyMap={this.state.currencyMap}/>} />
+                        <Route path="/faucet" render = {
+                            props => <Faucet {...props}
+                                              postFaucet={this.postFaucet}
+                                              handleChange={this.handleChange}
+                                              address={this.state.address}
+                                              amount={this.state.amount}
+                                              currency={this.state.currency}
+                                              unit={this.state.unit}
+                                              currencyMap={this.state.currencyMap}/>} />
+                        <Route path="/transaction" render = {
+                            props => <Transaction {...props}
+                                             getTransaction={this.getTransaction}
+                                             handleChange={this.handleChange}
+                                             address={this.state.address}
+                                             currency={this.state.currency}
+                                             transactions={this.state.transactions}/>} />
+                    </Switch>
+                </ResponsiveDrawer>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;

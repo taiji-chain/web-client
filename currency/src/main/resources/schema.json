@@ -5,6 +5,12 @@
           "currency": {
             "type": "string"
           },
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
           "toAddress": {
             "type": "string"
           },
@@ -17,6 +23,8 @@
         },
         "required": [
           "currency",
+          "address",
+          "password",
           "toAddress",
           "amount",
           "unit"
