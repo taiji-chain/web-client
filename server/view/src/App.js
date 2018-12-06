@@ -5,6 +5,7 @@ import Balance from './components/Balance';
 import Faucet from './components/Faucet';
 import Transaction from './components/Transaction';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
+import Form from './components/Form';
 
 class App extends Component {
 
@@ -92,6 +93,7 @@ class App extends Component {
                 <ResponsiveDrawer>
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route path="/form/:formId" component={Form} />
                         <Route path="/balance" render = {
                             props => <Balance {...props}
                                               getBalance={this.getBalance}

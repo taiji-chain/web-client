@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { toggleButtonAction } from "../actions";
+import Button from '@material-ui/core/Button';
+
 class Home extends Component {
     render() {
+        console.log(this.props);
+        const { toggleButton, toggleButtonAction } = this.props;
         return (
             <div>
                 <pre>
@@ -12,9 +18,19 @@ class Home extends Component {
                 <pre>
                     If you have questions or want to discuss the features, please visit <a href="https://gitter.im/networknt/taiji-blockchain">gitter room</a> or <a href="https://www.reddit.com/r/TaijiChain/">TaijiChain Reddit</a>.
                 </pre>
+                <div>{ toggleButton? "I am set to true" : "I am set to false"} </div>
+                <div><Button color="primary" variant="contained" onClick={toggleButtonAction}>Change Store State</Button></div>
             </div>
         )
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    ...state.wallet
+});
+export default connect(
+    mapStateToProps,
+    {
+        toggleButtonAction
+    }
+)(Home);

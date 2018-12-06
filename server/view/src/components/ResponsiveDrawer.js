@@ -70,6 +70,11 @@ class ResponsiveDrawer extends Component {
                     <MenuItem component={Link} to="/" selected={'/' === pathname}>
                         Home
                     </MenuItem>
+                    <Divider />
+                    <MenuItem component={Link} to="/form/io.taiji.client.wallet.create" selected={'/form/io.taiji.client.wallet.create' === pathname}>
+                        Create Wallet
+                    </MenuItem>
+                    <Divider />
                     <MenuItem component={Link} to="/faucet" selected={'/faucet' === pathname}>
                         Faucet
                     </MenuItem>
