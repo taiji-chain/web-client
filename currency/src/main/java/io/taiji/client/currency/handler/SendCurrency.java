@@ -82,8 +82,9 @@ public class SendCurrency implements Handler {
         rtx.addDebitEntry(credentials.getAddress(), ledgerEntry);
         rtx.addCreditEntry(fee.getBankAddress(), feeEntry);
         rtx.addDebitEntry(address, feeEntry);
+        if(logger.isDebugEnabled()) logger.debug("Raw transaction before signed " + rtx);
         SignedTransaction stx = TransactionManager.signTransaction(rtx, credentials);
-
+        if(logger.isDebugEnabled()) logger.debug("Calling TaijiClient with transaction " + stx);
         Status status = TaijiClient.postTx(credentials.getAddress().substring(0, 4), stx);
         if(status != null && status.getStatusCode() == 200) {
             Map<String, Object> result = new HashMap<>();
