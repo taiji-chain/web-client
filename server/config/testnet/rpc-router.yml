@@ -1,0 +1,7 @@
+---
+description: RPC router description
+handlerPackage: io.taiji
+jsonPath: /api/json
+formPath: /api/form
+colferPath: /api/colfer
+resourcesBasePath: /

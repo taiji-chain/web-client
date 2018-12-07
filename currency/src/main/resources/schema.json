@@ -29,4 +29,15 @@
           "amount",
           "unit"
         ]
-      },"scope": "t.w"}}
+      },"scope": "t.w"},"taiji.io/currency/balance/1.0.0":{"schema": {
+        "title": "Currency Balance",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address"
+        ]
+      },"scope": "t.r"}}

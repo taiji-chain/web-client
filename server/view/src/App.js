@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
+import { Router } from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory'
 import Home from './components/Home';
 import Balance from './components/Balance';
 import Faucet from './components/Faucet';
 import Transaction from './components/Transaction';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
 import Form from './components/Form';
+
+export const history = createBrowserHistory();
 
 class App extends Component {
 
@@ -89,17 +93,12 @@ class App extends Component {
 
     render() {
         return (
-            <BrowserRouter>
+            <Router history={history}>
                 <ResponsiveDrawer>
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/form/:formId" component={Form} />
-                        <Route path="/balance" render = {
-                            props => <Balance {...props}
-                                              getBalance={this.getBalance}
-                                              handleChange={this.handleChange}
-                                              address={this.state.address}
-                                              currencyMap={this.state.currencyMap}/>} />
+                        <Route path="/balance" component={Balance} />
                         <Route path="/faucet" render = {
                             props => <Faucet {...props}
                                               postFaucet={this.postFaucet}
@@ -118,7 +117,7 @@ class App extends Component {
                                              transactions={this.state.transactions}/>} />
                     </Switch>
                 </ResponsiveDrawer>
-            </BrowserRouter>
+            </Router>
         );
     }
 }

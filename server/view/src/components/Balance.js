@@ -1,38 +1,23 @@
 import React, {Component, Fragment} from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { getBalance, handleAddressChange} from '../actions';
 import {connect} from 'react-redux';
 
 class Balance extends Component {
 
     render() {
-        console.log(this.props.currency.address);
+        console.log(this.props.form.result);
         let result;
-        if(this.props.currency.balance) {
-            result = <div>The balance of TAIJI is {this.props.currency.balance} in SHELL</div>
+        if(this.props.form.result) {
+            result = <div>The balance of TAIJI is {this.props.form.result['taiji']} in SHELL</div>
         } else {
-            if(this.props.currency.error) {
+            if(this.props.error) {
                 console.log('error is not empty');
-                result = <div>Error: {this.props.currency.error}</div>
+                result = <div>Error: {this.props.form.error}</div>
             } else {
                 result = ''
             }
         }
         return (
             <Fragment>
-                <form>
-                    <TextField
-                        label="Address"
-                        value={this.props.currency.address}
-                        onChange={this.props.handleChange}
-                        margin="normal"
-                        style={{width: 370}}
-                    />
-                </form>
-                <Button color="primary" variant="contained" onClick={() => this.props.getBalance(this.props.currency.address)}>
-                    Balance
-                </Button>
                 {result}
              </Fragment>
         )
@@ -40,15 +25,10 @@ class Balance extends Component {
 }
 
 const mapStateToProps = state => ({
-    currency: state.currency
+    form: state.form
 });
 
-const mapDispatchToProps = dispatch => ({
-    getBalance: address => dispatch(getBalance(address)),
-    handleChange: event => dispatch(handleAddressChange(event))
-});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Balance);
