@@ -1,3 +1,5 @@
+import CurrencyReducer from "../reducers/CurrencyReducer";
+
 export const forms = {
     currencyBalanceForm: {
         formId: 'currencyBalanceForm',
@@ -28,6 +30,70 @@ export const forms = {
             '*'
         ]
     },
+    currencySendForm: {
+        formId: 'currencySendForm',
+        actions: [
+            {
+                host: 'taiji.io',
+                service: 'currency',
+                action: 'send',
+                version: '1.0.0',
+                title: 'Balance',
+                success: '/currencySent'
+            }
+        ],
+        schema: {
+            type: 'object',
+            required: [
+                'currency',
+                'address',
+                'password',
+                'toAddress',
+                'amount',
+                'unit'
+            ],
+            title: 'Currency Send',
+            properties: {
+                currency: {
+                    title: 'Currency',
+                    type: 'string',
+                    enum: ['taiji']
+                },
+                address: {
+                    title: 'Address',
+                    type: 'string'
+                },
+                password: {
+                    title: 'Password',
+                    type: 'string'
+                },
+                toAddress: {
+                    title: 'To Address',
+                    type: 'string'
+                },
+                amount: {
+                    title: 'Amount',
+                    type: 'string',
+                },
+                unit: {
+                    title: 'Unit',
+                    type: 'string',
+                    enum: ['SHELL', 'KSHELL', 'MSHELL', 'TAIJI', 'KTAIJI', 'MTAIJI']
+                }
+            }
+        },
+        form: [
+            'currency',
+            'address',
+            {
+                key: 'password',
+                type: 'password'
+            },
+            'toAddress',
+            'amount',
+            'unit'
+        ]
+    },
     walletCreateForm: {
         formId: 'walletCreateForm',
         actions: [
@@ -37,7 +103,7 @@ export const forms = {
                 action: 'create',
                 version: '1.0.0',
                 title: 'Wallet',
-                success: '/page/io.taiji.client.wallet.created'
+                success: '/wallet'
             }
         ],
         schema: {
@@ -59,7 +125,10 @@ export const forms = {
                 },
                 region: {
                     title: 'Region',
-                    type: 'string'
+                    type: 'string',
+                    enum: [
+                        "0000", "0001", "0002"
+                    ]
                 }
             }
         },
@@ -74,28 +143,19 @@ export const forms = {
             },
             {
                 key: 'region',
-                type: 'rc-select',
-                multiple: false,
-                items: [
+                type: 'select',
+                titleMap: [
                     {
                         value: '0000',
-                        label: 'Americas'
+                        name: 'Americas'
                     },
                     {
                         value: '0001',
-                        label: 'Asia'
-                    },
-                    {
-                        value: '0001',
-                        label: 'Oceania'
+                        name: 'Asia, Oceania'
                     },
                     {
                         value: '0002',
-                        label: 'Europe'
-                    },
-                    {
-                        value: '0002',
-                        label: 'Africa'
+                        name: 'Europe, Africa'
                     }
                 ]
             }

@@ -12,8 +12,7 @@ export const POST_FAUCET_FAILURE = 'POST_FAUCET_FAILURE';
 
 export const TOGGLE_BUTTON_ACTION = 'TOGGLE_BUTTON_ACTION';
 
-export const LOAD_FORM_SUCCESS = 'LOAD_FORM_SUCCESS';
-export const LOAD_FORM_FAILURE = 'LOAD_FORM_FAILURE';
+export const SUBMIT_FORM_STARTED = 'SUBMIT_FORM_STARTED';
 export const SUBMIT_FORM_SUCCESS = 'SUBMIT_FORM_SUCCESS';
 export const SUBMIT_FORM_FAILURE = 'SUBMIT_FORM_FAILURE';
 
@@ -91,6 +90,7 @@ export const loadForm = formId => {
 
 export function submitForm(action) {
     return async (dispatch) => {
+        dispatch({type: SUBMIT_FORM_STARTED});
         const request = {
             method: 'POST',
             headers: {
@@ -104,11 +104,11 @@ export function submitForm(action) {
             const response = await fetch('/api/json', request);
             const data = await response.json();
             console.log("data", data);
-            dispatch({ type: 'SUBMIT_FORM_SUCCESS', payload: data });
+            dispatch({ type: SUBMIT_FORM_SUCCESS, payload: data });
             history.push(action.success);
         } catch(e) {
             console.log("error " + e.toString());
-            dispatch({ type: 'SUBMIT_FORM_FAILURE', error: e.toString()})
+            dispatch({ type: SUBMIT_FORM_FAILURE, error: e.toString()})
         }
     }
 }

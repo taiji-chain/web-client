@@ -4,6 +4,8 @@ import { Router } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory'
 import Home from './components/Home';
 import Balance from './components/Balance';
+import Wallet from './components/Wallet';
+import CurrencySent from './components/CurrencySent';
 import Faucet from './components/Faucet';
 import Transaction from './components/Transaction';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
@@ -99,6 +101,8 @@ class App extends Component {
                         <Route exact path="/" component={Home} />
                         <Route path="/form/:formId" component={Form} />
                         <Route path="/balance" component={Balance} />
+                        <Route path="/wallet" component={Wallet} />
+                        <Route path="/currencySent" component={CurrencySent} />
                         <Route path="/faucet" render = {
                             props => <Faucet {...props}
                                               postFaucet={this.postFaucet}

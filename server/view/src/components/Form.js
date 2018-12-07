@@ -33,6 +33,7 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            fetching: false,
             error: null,
             schema: null,
             form: null,
@@ -54,7 +55,7 @@ class Form extends Component {
     }
 
     onModelChange = (key, val) => {
-        console.log(this.state.model);
+        //console.log(this.state.model);
         utils.selectOrSet(key, this.state.model, val);
     };
 
@@ -65,7 +66,7 @@ class Form extends Component {
             this.setState({error: validationResult.error.message});
         } else {
             action.data = this.state.model;
-            this.setState({success: action.success});
+            this.setState({success: action.success, fetching: true});
             this.props.submitForm(action);
         }
     }
@@ -79,8 +80,17 @@ class Form extends Component {
                 let boundButtonClick = this.onButtonClick.bind(this, item);
                 actions.push(<Button variant="contained" className={classes.button} color="primary" key={index} onClick={boundButtonClick}>{item.title}</Button>)
             });
+            let wait;
+            if(this.state.fetching) {
+                console.log('fetching is true');
+                wait = <div><CircularProgress className={classes.progress} /></div>;
+            } else {
+                console.log("fetching is false");
+                wait = <div></div>;
+            }
             return (
                 <div>
+                    {wait}
                     <SchemaForm schema={this.state.schema} form={this.state.form} model={this.state.model} onModelChange={this.onModelChange} />
                     <pre>{this.state.error}</pre>
                     {actions}
@@ -93,8 +103,6 @@ class Form extends Component {
 }
 
 const mapStateToProps = state => ({
-    result: state.result,
-    error: state.error
 });
 
 const mapDispatchToProps = dispatch => ({
