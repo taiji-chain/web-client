@@ -35,6 +35,7 @@ class Form extends Component {
         this.state = {
             fetching: false,
             error: null,
+            formId: null,
             schema: null,
             form: null,
             actions: null,
@@ -42,11 +43,23 @@ class Form extends Component {
         }
     }
 
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        if(this.state.formId !== nextProps.match.params.formId) {
+            let formData = forms[this.props.match.params.formId];
+            this.setState({
+                formId: nextProps.match.params.formId,
+                schema: formData.schema,
+                form: formData.form,
+                actions: formData.actions,
+                model: formData.model || {}
+            });
+        }
+    }
+
     componentDidMount() {
         let formData = forms[this.props.match.params.formId];
-        console.log(formData);
-        console.log(formData.schema);
         this.setState({
+            formId: this.props.match.params.formId,
             schema: formData.schema,
             form: formData.form,
             actions: formData.actions,
@@ -73,7 +86,7 @@ class Form extends Component {
 
     render() {
         const { classes } = this.props;
-        console.log(this.state.actions);
+        //console.log(this.state.actions);
         if(this.state.schema) {
             var actions = [];
             this.state.actions.map((item, index) => {
@@ -82,10 +95,10 @@ class Form extends Component {
             });
             let wait;
             if(this.state.fetching) {
-                console.log('fetching is true');
+                //console.log('fetching is true');
                 wait = <div><CircularProgress className={classes.progress} /></div>;
             } else {
-                console.log("fetching is false");
+                //console.log("fetching is false");
                 wait = <div></div>;
             }
             return (

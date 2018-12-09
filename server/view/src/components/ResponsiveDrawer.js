@@ -61,7 +61,6 @@ class ResponsiveDrawer extends Component {
 
     render() {
         const { classes, children, location: { pathname }, theme } = this.props;
-
         const drawer = (
             <div>
                 <div className={classes.toolbar} />

@@ -1,6 +1,4 @@
 import {history} from '../App';
-import {forms} from '../data/Forms';
-
 export const GET_BALANCE = 'GET_BALANCE';
 export const GET_BALANCE_SUCCESS = 'GET_BALANCE_SUCCESS';
 export const GET_BALANCE_FAILURE = 'GET_BALANCE_FAILURE';
@@ -15,7 +13,6 @@ export const TOGGLE_BUTTON_ACTION = 'TOGGLE_BUTTON_ACTION';
 export const SUBMIT_FORM_STARTED = 'SUBMIT_FORM_STARTED';
 export const SUBMIT_FORM_SUCCESS = 'SUBMIT_FORM_SUCCESS';
 export const SUBMIT_FORM_FAILURE = 'SUBMIT_FORM_FAILURE';
-
 
 export function getBalance(address) {
     console.log(address);
@@ -76,16 +73,6 @@ export const handleAddressChange = event => {
          type: 'ADDRESS_FIELD_CHANGED',
          payload: event.target.value
      };
-};
-
-export const loadForm = formId => {
-    //console.log(formId);
-    //console.log(forms);
-    //console.log(forms[formId]);
-    return {
-        type: 'LOAD_FORM_SUCCESS',
-        payload: forms[formId]
-    };
 };
 
 export function submitForm(action) {
