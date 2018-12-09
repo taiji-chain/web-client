@@ -51,7 +51,7 @@ public class SendCurrency implements Handler {
         long amountInShell = Converter.toShell(amount, unit);
 
         // validate if the toAddress is formatted correctly.
-        if (!WalletUtils.isValidAddress(toAddress)) {
+        if (!Keys.validateToAddress(toAddress)) {
             return NioUtils.toByteBuffer(getStatus(exchange, INVALID_WALLET_ADDRESS, toAddress));
         }
         Credentials credentials;
