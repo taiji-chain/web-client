@@ -2,14 +2,50 @@
         "title": "Withdraw Token",
         "type": "object",
         "properties": {
-          "entityAddress": {
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "tokenAddressOrSymbol": {
             "type": "string"
           },
           "fromAddress": {
             "type": "string"
           },
           "amount": {
-            "type": "integer"
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "password",
+          "tokenAddressOrSymbol",
+          "fromAddress",
+          "amount"
+        ]
+        
+      },"scope": "t.w"},"taiji.io/token/transaction/1.0.0":{"schema": {
+        "title": "Token Transaction",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address"
+        ]
+      },"scope": "t.r"},"taiji.io/token/info/1.0.0":{"schema": {
+        "title": "Token Info",
+        "type": "object",
+        "properties": {
+          "tokenAddressOrSymbol": {
+            "type": "string"
           }
         }
       },"scope": "t.w"},"taiji.io/token/create/1.0.0":{"schema": {
@@ -19,6 +55,12 @@
           "currency": {
             "type": "string"
           },
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -26,16 +68,16 @@
             "type": "string"
           },
           "totalSupply": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           },
           "decimals": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         },
         "required": [
           "currency",
+          "address",
+          "password",
           "name",
           "symbol",
           "totalSupply",
@@ -45,28 +87,68 @@
         "title": "Transfer Token",
         "type": "object",
         "properties": {
-          "entityAddress": {
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "tokenAddressOrSymbol": {
             "type": "string"
           },
           "toAddress": {
             "type": "string"
           },
           "amount": {
-            "type": "integer"
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "address",
+          "password",
+          "tokenAddressOrSymbol",
+          "toAddress",
+          "amount"
+        ]
       },"scope": "t.w"},"taiji.io/token/approve/1.0.0":{"schema": {
         "title": "Approve Token",
         "type": "object",
         "properties": {
-          "entityAddress": {
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "tokenAddressOrSymbol": {
             "type": "string"
           },
           "toAddress": {
             "type": "string"
           },
           "amount": {
-            "type": "integer"
+            "type": "string"
           }
-        }
-      },"scope": "t.w"}}
+        },
+        "required": [
+          "address",
+          "password",
+          "tokenAddressOrSymbol",
+          "toAddress",
+          "amount"
+        ]
+      },"scope": "t.w"},"taiji.io/token/account/1.0.0":{"schema": {
+        "title": "Token Account",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address"
+        ]
+      },"scope": "t.r"}}

@@ -75,21 +75,39 @@ class ResponsiveDrawer extends Component {
                         Create Wallet
                     </MenuItem>
                     <Divider />
+                    <MenuItem component={Link} to="/form/currencyFaucetForm" selected={'/form/currencyFaucetForm' === pathname}>
+                        Testnet Faucet
+                    </MenuItem>
                     <MenuItem component={Link} to="/form/currencySendForm" selected={'/form/currencySendForm' === pathname}>
                         Send Currency
                     </MenuItem>
                     <MenuItem component={Link} to="/form/currencyBalanceForm" selected={'/form/currencyBalanceForm' === pathname}>
                         Currency Balance
                     </MenuItem>
+                    <MenuItem component={Link} to="/form/currencyTransactionForm" selected={'/form/currencyTransactionForm' === pathname}>
+                        Currency Transaction
+                    </MenuItem>
                     <Divider />
-                    <MenuItem component={Link} to="/faucet" selected={'/faucet' === pathname}>
-                        Faucet
+                    <MenuItem component={Link} to="/form/tokenCreateForm" selected={'/form/tokenCreateForm' === pathname}>
+                        Create Token
                     </MenuItem>
-                    <MenuItem component={Link} to="/balance" selected={'/balance' === pathname}>
-                        Balance
+                    <MenuItem component={Link} to="/form/tokenWithdrawForm" selected={'/form/tokenWithdrawForm' === pathname}>
+                        Withdraw Token
                     </MenuItem>
-                    <MenuItem component={Link} to="/transaction" selected={'/transaction' === pathname}>
-                        Transaction
+                    <MenuItem component={Link} to="/form/tokenTransferForm" selected={'/form/tokenTransferForm' === pathname}>
+                        Transfer Token
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/tokenApproveForm" selected={'/form/tokenApproveForm' === pathname}>
+                        Approve Token
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/tokenInfoForm" selected={'/form/tokenInfoForm' === pathname}>
+                        Token Info
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/tokenAccountForm" selected={'/form/tokenAccountForm' === pathname}>
+                        Token Account
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/tokenTransactionForm" selected={'/form/tokenTransactionForm' === pathname}>
+                        Token Transaction
                     </MenuItem>
                 </MenuList>
             </div>

@@ -20,7 +20,9 @@
         <version.undertow>2.0.11.Final</version.undertow>
         <version.json-schema-validator>0.1.23</version.json-schema-validator>
         <version.fastscanner>2.18.1</version.fastscanner>
-        
+        <version.blockchain>1.0.0</version.blockchain>
+        <version.confluent>5.0.1</version.confluent>
+
         
         
         
@@ -65,6 +67,36 @@
             <version>${version.json-schema-validator}</version>
         </dependency>
         <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>taiji-crypto</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>taiji-client</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>taiji-utility</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>taiji-token</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>avro-serializer</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>event-common</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${version.jackson}</version>
@@ -94,9 +126,12 @@
             <artifactId>fast-classpath-scanner</artifactId>
             <version>${version.fastscanner}</version>
         </dependency>
-        
-        
-        
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-schema-registry-client</artifactId>
+            <version>${version.confluent}</version>
+        </dependency>
+
         
         <!-- Test Dependencies -->
         <dependency>
@@ -240,6 +275,10 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>confluent</id>
+            <url>http://packages.confluent.io/maven/</url>
         </repository>
     </repositories>
 </project>
