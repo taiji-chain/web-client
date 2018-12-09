@@ -123,7 +123,7 @@ class ResponsiveDrawer extends Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Taiji Faucet - Testnet
+                            Taiji Blockchain - Testnet
                         </Typography>
                     </Toolbar>
                 </AppBar>

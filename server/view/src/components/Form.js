@@ -101,9 +101,12 @@ class Form extends Component {
                 //console.log("fetching is false");
                 wait = <div></div>;
             }
+            let title = <h2>{this.state.schema.title}</h2>
+
             return (
                 <div>
                     {wait}
+                    {title}
                     <SchemaForm schema={this.state.schema} form={this.state.form} model={this.state.model} onModelChange={this.onModelChange} />
                     <pre>{this.state.error}</pre>
                     {actions}
