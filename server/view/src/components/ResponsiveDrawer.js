@@ -75,9 +75,6 @@ class ResponsiveDrawer extends Component {
                         Create Wallet
                     </MenuItem>
                     <Divider />
-                    <MenuItem component={Link} to="/form/currencyFaucetForm" selected={'/form/currencyFaucetForm' === pathname}>
-                        Testnet Faucet
-                    </MenuItem>
                     <MenuItem component={Link} to="/form/currencySendForm" selected={'/form/currencySendForm' === pathname}>
                         Send Currency
                     </MenuItem>

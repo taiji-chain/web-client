@@ -6,8 +6,7 @@ import Home from './components/Home';
 import Balance from './components/Balance';
 import Wallet from './components/Wallet';
 import CurrencySent from './components/CurrencySent';
-import Faucet from './components/Faucet';
-import Transaction from './components/Transaction';
+import CurrencyTransaction from './components/CurrencyTransaction';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
 import Form from './components/Form';
 
@@ -103,22 +102,7 @@ class App extends Component {
                         <Route path="/balance" component={Balance} />
                         <Route path="/wallet" component={Wallet} />
                         <Route path="/currencySent" component={CurrencySent} />
-                        <Route path="/faucet" render = {
-                            props => <Faucet {...props}
-                                              postFaucet={this.postFaucet}
-                                              handleChange={this.handleChange}
-                                              address={this.state.address}
-                                              amount={this.state.amount}
-                                              currency={this.state.currency}
-                                              unit={this.state.unit}
-                                              currencyMap={this.state.currencyMap}/>} />
-                        <Route path="/transaction" render = {
-                            props => <Transaction {...props}
-                                             getTransaction={this.getTransaction}
-                                             handleChange={this.handleChange}
-                                             address={this.state.address}
-                                             currency={this.state.currency}
-                                             transactions={this.state.transactions}/>} />
+                        <Route path="/currencyTransaction" component={CurrencyTransaction} />
                     </Switch>
                 </ResponsiveDrawer>
             </Router>
