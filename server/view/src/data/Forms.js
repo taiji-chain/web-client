@@ -209,43 +209,49 @@ export const forms = {
         schema: {
             type: 'object',
             required: [
-                "currency",
-                "address",
-                "password",
-                "name",
-                "symbol",
-                "totalSupply",
-                "decimals"
+                'currency',
+                'address',
+                'password',
+                'name',
+                'symbol',
+                'totalSupply',
+                'decimals'
             ],
             title: 'Create Token',
             properties: {
-                "currency": {
+                currency: {
                     title: 'Currency',
                     type: 'string',
                     enum: ['taiji']
                 },
-                "address": {
-                    "type": "string"
+                address: {
+                    title: 'Address',
+                    type: 'string'
                 },
-                "password": {
-                    "type": "string"
+                password: {
+                    title: 'Password',
+                    type: 'string'
                 },
-                "name": {
-                    "type": "string"
+                name: {
+                    title: 'Token Name',
+                    type: 'string'
                 },
-                "symbol": {
-                    "type": "string"
+                symbol: {
+                    title: 'Symbol',
+                    type: 'string'
                 },
-                "totalSupply": {
-                    "type": "string"
+                totalSupply: {
+                    title: 'Total Supply',
+                    type: 'string'
                 },
-                "decimals": {
-                    "type": "string"
+                decimals: {
+                    title: 'Decimals',
+                    type: 'string'
                 }
             }
         },
         form: [
-            "*"
+            '*'
         ]
     },
     tokenTransferForm: {
@@ -263,40 +269,45 @@ export const forms = {
         schema: {
             type: 'object',
             required: [
-                "address",
-                "password",
-                "tokenAddressOrSymbol",
-                "toAddress",
-                "amount"
+                'address',
+                'password',
+                'tokenAddressOrSymbol',
+                'toAddress',
+                'amount'
             ],
             title: 'Transfer Token',
             properties: {
-                "address": {
-                    "type": "string"
+                address: {
+                    title: 'Address',
+                    type: 'string'
                 },
-                "password": {
-                    "type": "string"
+                password: {
+                    title: 'Password',
+                    type: 'string'
                 },
-                "tokenAddressOrSymbol": {
-                    "type": "string"
+                tokenAddressOrSymbol: {
+                    title: 'Token Address or Symbol',
+                    type: 'string'
                 },
-                "toAddress": {
-                    "type": "string"
+                toAddress: {
+                    title: 'To Address',
+                    type: 'string'
                 },
-                "amount": {
-                    "type": "string"
+                amount: {
+                    title: 'Amount',
+                    type: 'string'
                 }
             }
         },
         form: [
-            "address",
+            'address',
             {
                 key: 'password',
                 type: 'password'
             },
-            "tokenAddressOrSymbol",
-            "toAddress",
-            "amount"
+            'tokenAddressOrSymbol',
+            'toAddress',
+            'amount'
         ]
     },
     tokenApproveForm: {
@@ -314,28 +325,33 @@ export const forms = {
         schema: {
             type: 'object',
             required: [
-                "address",
-                "password",
-                "tokenAddressOrSymbol",
-                "toAddress",
-                "amount"
+                'address',
+                'password',
+                'tokenAddressOrSymbol',
+                'toAddress',
+                'amount'
             ],
             title: 'Approve Token',
             properties: {
-                "address": {
-                    "type": "string"
+                address: {
+                    title: 'Address',
+                    type: 'string'
                 },
-                "password": {
-                    "type": "string"
+                password: {
+                    title: 'Password',
+                    type: 'string'
                 },
-                "tokenAddressOrSymbol": {
-                    "type": "string"
+                tokenAddressOrSymbol: {
+                    title: 'Token Address or Symbol',
+                    type: 'string'
                 },
-                "toAddress": {
-                    "type": "string"
+                toAddress: {
+                    title: 'To Address',
+                    type: 'string'
                 },
-                "amount": {
-                    "type": "string"
+                amount: {
+                    title: 'Amount',
+                    type: 'string'
                 }
             }
         },
@@ -365,40 +381,45 @@ export const forms = {
         schema: {
             type: 'object',
             required: [
-                "address",
-                "password",
-                "tokenAddressOrSymbol",
-                "fromAddress",
-                "amount"
+                'address',
+                'password',
+                'tokenAddressOrSymbol',
+                'fromAddress',
+                'amount'
             ],
             title: 'Withdraw Token',
             properties: {
-                "address": {
-                    "type": "string"
+                address: {
+                    title: 'Address',
+                    type: 'string'
                 },
-                "password": {
-                    "type": "string"
+                password: {
+                    title: 'Password',
+                    type: 'string'
                 },
-                "tokenAddressOrSymbol": {
-                    "type": "string"
+                tokenAddressOrSymbol: {
+                    title: 'Token Address or Symbol',
+                    type: 'string'
                 },
-                "fromAddress": {
-                    "type": "string"
+                fromAddress: {
+                    title: 'From Address',
+                    type: 'string'
                 },
-                "amount": {
-                    "type": "string"
+                amount: {
+                    title: 'Amount',
+                    type: 'string'
                 }
             }
         },
         form: [
-            "address",
+            'address',
             {
                 key: 'password',
                 type: 'password'
             },
-            "tokenAddressOrSymbol",
-            "fromAddress",
-            "amount"
+            'tokenAddressOrSymbol',
+            'fromAddress',
+            'amount'
         ]
     },
     tokenInfoForm: {
@@ -417,13 +438,14 @@ export const forms = {
             type: 'object',
             title: 'Token Info',
             properties: {
-                "tokenAddressOrSymbol": {
-                    "type": "string"
+                tokenAddressOrSymbol: {
+                    title: 'Token Address or Symbol',
+                    type: 'string'
                 }
             }
         },
         form: [
-            "*"
+            '*'
         ]
     },
     tokenAccountForm: {
@@ -440,21 +462,23 @@ export const forms = {
         ],
         schema: {
             type: 'object',
-            title: 'Token Info',
+            title: 'Token Account',
             properties: {
-                "address": {
-                    "type": "string"
+                address: {
+                    title: 'Address',
+                    type: 'string'
                 },
-                "symbol": {
-                    "type": "string"
+                symbol: {
+                    title: 'Symbol',
+                    type: 'string'
                 }
             },
-            "required": [
-                "address"
+            required: [
+                'address'
             ]
         },
         form: [
-            "*"
+            '*'
         ]
     },
     tokenTransactionForm: {
@@ -471,21 +495,23 @@ export const forms = {
         ],
         schema: {
             type: 'object',
-            title: 'Token Info',
+            title: 'Token Transaction',
             properties: {
-                "address": {
-                    "type": "string"
+                address: {
+                    title: 'Address',
+                    type: 'string'
                 },
-                "symbol": {
-                    "type": "string"
+                symbol: {
+                    title: 'Symbol',
+                    type: 'string'
                 }
             },
-            "required": [
-                "address"
+            required: [
+                'address'
             ]
         },
         form: [
-            "*"
+            '*'
         ]
     },
 
