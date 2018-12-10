@@ -104,6 +104,16 @@
             <artifactId>event-common</artifactId>
             <version>${version.blockchain}</version>
         </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>taiji-token</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>avro-serializer</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
