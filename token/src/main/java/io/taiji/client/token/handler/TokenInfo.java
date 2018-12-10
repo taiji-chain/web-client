@@ -3,6 +3,7 @@ package io.taiji.client.token.handler;
 
 import com.networknt.monad.Result;
 import com.networknt.taiji.client.TaijiClient;
+import com.networknt.taiji.crypto.Keys;
 import com.networknt.taiji.crypto.WalletUtils;
 import com.networknt.taiji.event.JsonMapper;
 import com.networknt.utility.NioUtils;
@@ -24,7 +25,7 @@ public class TokenInfo implements Handler {
     public ByteBuffer handle(HttpServerExchange exchange, Object input)  {
         Map<String, String> map = (Map<String, String>)input;
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
-        if (!WalletUtils.isValidAddress(tokenAddressOrSymbol)) {
+        if (!Keys.validateToAddress(tokenAddressOrSymbol)) {
             // check if it is a symbol by getting the token info by symbol.
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoBySymbol(tokenAddressOrSymbol);
             if(tokenInfoResult.isSuccess()) {

@@ -40,7 +40,6 @@ public class TransferToken implements Handler {
     @Override
     public ByteBuffer handle(HttpServerExchange exchange, Object input)  {
         Map<String, String> map = (Map<String, String>)input;
-        String currency = map.get("currency");
         String address = map.get("address");
         String password = map.get("password");
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
@@ -64,14 +63,18 @@ public class TransferToken implements Handler {
 
         // differentiate between tokenAddress and Symbol. And validate if the tokenAddress is formatted correctly.
         String tokenAddress;
+        String currency;
+        String symbol;
         Map<String, Object> tokenInfo = null;
 
-        if (!WalletUtils.isValidAddress(tokenAddressOrSymbol)) {
+        if (!Keys.validateToAddress(tokenAddressOrSymbol)) {
             // check if it is a symbol by getting the token info by symbol.
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoBySymbol(tokenAddressOrSymbol);
             if(tokenInfoResult.isSuccess()) {
                 tokenInfo = tokenInfoResult.getResult();
                 tokenAddress = (String)tokenInfo.get("entityAddress");
+                currency = (String)tokenInfo.get("currency");
+                symbol = (String)tokenInfo.get("symbol");
             } else {
                 return NioUtils.toByteBuffer(getStatus(exchange, tokenInfoResult.getError()));
             }
@@ -80,12 +83,14 @@ public class TransferToken implements Handler {
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoByAddress(tokenAddress);
             if(tokenInfoResult.isSuccess()) {
                 tokenInfo = tokenInfoResult.getResult();
+                currency = (String)tokenInfo.get("currency");
+                symbol = (String)tokenInfo.get("symbol");
             } else {
                 return NioUtils.toByteBuffer(getStatus(exchange, tokenInfoResult.getError()));
             }
         }
         // validate if the toAddress is formatted correctly.
-        if (!WalletUtils.isValidAddress(toAddress)) {
+        if (!Keys.validateToAddress(toAddress)) {
             return NioUtils.toByteBuffer(getStatus(exchange, INVALID_WALLET_ADDRESS, toAddress));
         }
 
@@ -107,7 +112,7 @@ public class TransferToken implements Handler {
                 .setNonce(nonce)
                 .build();
 
-        TokenTransferredEvent tokenTransferredEvent = new TokenTransferredEvent(eventId, tokenAddress, toAddress, total);
+        TokenTransferredEvent tokenTransferredEvent = new TokenTransferredEvent(eventId, symbol, toAddress, total);
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenTransferredEvent);

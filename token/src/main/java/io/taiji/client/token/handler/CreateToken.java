@@ -93,7 +93,7 @@ public class CreateToken implements Handler {
                 .setNonce(nonce)
                 .build();
 
-        TokenCreatedEvent tokenCreatedEvent = new TokenCreatedEvent(eventId, tokenAddress, name, symbol, total, decimals);
+        TokenCreatedEvent tokenCreatedEvent = new TokenCreatedEvent(eventId, currency, tokenAddress, name, symbol, total, decimals);
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenCreatedEvent);

@@ -40,7 +40,6 @@ public class ApproveToken implements Handler {
     @Override
     public ByteBuffer handle(HttpServerExchange exchange, Object input)  {
         Map<String, String> map = (Map<String, String>)input;
-        String currency = map.get("currency");
         String address = map.get("address");
         String password = map.get("password");
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
@@ -48,7 +47,7 @@ public class ApproveToken implements Handler {
         String amountString = map.get("amount");
 
         // validate if the fromAddress is formatted correctly.
-        if (!WalletUtils.isValidAddress(toAddress)) {
+        if (!Keys.validateToAddress(toAddress)) {
             return NioUtils.toByteBuffer(getStatus(exchange, INVALID_WALLET_ADDRESS, toAddress));
         }
 
@@ -70,13 +69,17 @@ public class ApproveToken implements Handler {
 
         // differentiate between tokenAddress and Symbol. And validate if the tokenAddress is formatted correctly.
         String tokenAddress;
+        String currency;
+        String symbol;
         Map<String, Object> tokenInfo = null;
-        if (!WalletUtils.isValidAddress(tokenAddressOrSymbol)) {
+        if (!Keys.validateToAddress(tokenAddressOrSymbol)) {
             // check if it is a symbol by getting the token info by symbol.
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoBySymbol(tokenAddressOrSymbol);
             if(tokenInfoResult.isSuccess()) {
                 tokenInfo = tokenInfoResult.getResult();
                 tokenAddress = (String)tokenInfo.get("entityAddress");
+                currency = (String)tokenInfo.get("currency");
+                symbol = (String)tokenInfo.get("symbol");
             } else {
                 return NioUtils.toByteBuffer(getStatus(exchange, tokenInfoResult.getError()));
             }
@@ -85,6 +88,8 @@ public class ApproveToken implements Handler {
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoByAddress(tokenAddress);
             if(tokenInfoResult.isSuccess()) {
                 tokenInfo = tokenInfoResult.getResult();
+                currency = (String)tokenInfo.get("currency");
+                symbol = (String)tokenInfo.get("symbol");
             } else {
                 return NioUtils.toByteBuffer(getStatus(exchange, tokenInfoResult.getError()));
             }
@@ -108,7 +113,7 @@ public class ApproveToken implements Handler {
                 .setNonce(nonce)
                 .build();
 
-        TokenApprovedEvent tokenApprovedEvent = new TokenApprovedEvent(eventId, tokenAddress, toAddress, total);
+        TokenApprovedEvent tokenApprovedEvent = new TokenApprovedEvent(eventId, symbol, toAddress, total);
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenApprovedEvent);

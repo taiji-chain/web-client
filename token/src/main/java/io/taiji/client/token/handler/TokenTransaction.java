@@ -3,6 +3,7 @@ package io.taiji.client.token.handler;
 
 import com.networknt.monad.Result;
 import com.networknt.taiji.client.TaijiClient;
+import com.networknt.taiji.crypto.Keys;
 import com.networknt.taiji.crypto.WalletUtils;
 import com.networknt.taiji.event.JsonMapper;
 import com.networknt.utility.NioUtils;
@@ -30,7 +31,7 @@ public class TokenTransaction implements Handler {
         String symbol = map.get("symbol");
         // address is mandatory and validate it.
         // validate if the fromAddress is formatted correctly.
-        if (!WalletUtils.isValidAddress(address)) {
+        if (!Keys.validateToAddress(address)) {
             return NioUtils.toByteBuffer(getStatus(exchange, INVALID_WALLET_ADDRESS, address));
         }
         if(symbol != null && symbol.length() > 0) {

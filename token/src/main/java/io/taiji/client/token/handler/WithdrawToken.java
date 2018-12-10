@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 import io.undertow.server.HttpServerExchange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * After a token is created, it is approved for the owner to withdraw. However has the allowance can
@@ -32,6 +34,8 @@ import io.undertow.server.HttpServerExchange;
  */
 @ServiceHandler(id="taiji.io/token/withdraw/1.0.0")
 public class WithdrawToken implements Handler {
+    static final Logger logger = LoggerFactory.getLogger(WithdrawToken.class);
+
     static final String INVALID_WALLET_ADDRESS = "ERR12214";
     static final String AMOUNT_NOT_NUMBER = "ERR12215";
     static final String WALLET_CANNOT_LOAD = "ERR12213";
@@ -40,15 +44,16 @@ public class WithdrawToken implements Handler {
     @Override
     public ByteBuffer handle(HttpServerExchange exchange, Object input)  {
         Map<String, String> map = (Map<String, String>)input;
-        String currency = map.get("currency");
         String address = map.get("address");
         String password = map.get("password");
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
         String fromAddress = map.get("fromAddress");
         String amountString = map.get("amount");
 
+        if(logger.isDebugEnabled()) logger.debug("address = " + address + " tokenAddressOrSymbol = " + tokenAddressOrSymbol + " fromAddress = " + fromAddress + " amount = " + amountString);
+
         // validate if the fromAddress is formatted correctly.
-        if (!WalletUtils.isValidAddress(fromAddress)) {
+        if (!Keys.validateToAddress(fromAddress)) {
             return NioUtils.toByteBuffer(getStatus(exchange, INVALID_WALLET_ADDRESS, fromAddress));
         }
 
@@ -69,13 +74,17 @@ public class WithdrawToken implements Handler {
 
         // differentiate between tokenAddress and Symbol. And validate if the tokenAddress is formatted correctly.
         String tokenAddress;
+        String symbol;
+        String currency;
         Map<String, Object> tokenInfo = null;
-        if (!WalletUtils.isValidAddress(tokenAddressOrSymbol)) {
+        if (!Keys.validateToAddress(tokenAddressOrSymbol)) {
             // check if it is a symbol by getting the token info by symbol.
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoBySymbol(tokenAddressOrSymbol);
             if(tokenInfoResult.isSuccess()) {
                 tokenInfo = tokenInfoResult.getResult();
                 tokenAddress = (String)tokenInfo.get("entityAddress");
+                currency = (String)tokenInfo.get("currency");
+                symbol = (String)tokenInfo.get("symbol");
             } else {
                 return NioUtils.toByteBuffer(getStatus(exchange, tokenInfoResult.getError()));
             }
@@ -84,6 +93,8 @@ public class WithdrawToken implements Handler {
             Result<Map<String, Object>> tokenInfoResult = TaijiClient.getTokenInfoByAddress(tokenAddress);
             if(tokenInfoResult.isSuccess()) {
                 tokenInfo = tokenInfoResult.getResult();
+                currency = (String)tokenInfo.get("currency");
+                symbol = (String)tokenInfo.get("symbol");
             } else {
                 return NioUtils.toByteBuffer(getStatus(exchange, tokenInfoResult.getError()));
             }
@@ -92,7 +103,7 @@ public class WithdrawToken implements Handler {
         int decimals = (Integer)tokenInfo.get("decimals");
         long factor = Converter.power(10, decimals);
         long total = amount * factor;
-
+        if(logger.isDebugEnabled()) logger.debug("tokenAddress = " + tokenAddress + " currency = " + currency + " decimals = " + decimals);
         // get number of transactions from the chain-reader to generate eventId.
         long nonce = 0;
         Result<List<SignedLedgerEntry>> nonceResult = TaijiClient.getTransaction(address, currency);
@@ -107,7 +118,7 @@ public class WithdrawToken implements Handler {
                 .setNonce(nonce)
                 .build();
 
-        TokenWithdrewEvent tokenWithdrewEvent = new TokenWithdrewEvent(eventId, tokenAddress, fromAddress, total);
+        TokenWithdrewEvent tokenWithdrewEvent = new TokenWithdrewEvent(eventId, symbol, fromAddress, total);
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenWithdrewEvent);
@@ -127,6 +138,7 @@ public class WithdrawToken implements Handler {
         LedgerEntry feeEntry = new LedgerEntry(fee.getBankAddress(), fee.getApplication());
         rtx.addCreditEntry(fee.getBankAddress(), feeEntry);
         rtx.addDebitEntry(address, feeEntry);
+        if(logger.isDebugEnabled()) logger.debug("rtx = " + rtx);
         SignedTransaction stx = TransactionManager.signTransaction(rtx, credentials);
 
         Status status = TaijiClient.postTx(credentials.getAddress().substring(0, 4), stx);

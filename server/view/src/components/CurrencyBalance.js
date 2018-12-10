@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 
-class Balance extends Component {
+class CurrencyBalance extends Component {
 
     render() {
         console.log(this.props.form.result);
@@ -31,4 +31,4 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps
-)(Balance);
+)(CurrencyBalance);

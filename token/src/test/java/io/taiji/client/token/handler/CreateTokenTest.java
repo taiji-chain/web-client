@@ -44,12 +44,13 @@ public class CreateTokenTest {
         } catch (Exception e) {
             throw new ClientException(e);
         }
+        final String s = "{\"host\":\"taiji.io\",\"service\":\"token\",\"action\":\"create\",\"version\":\"1.0.0\",\"title\":\"Token\",\"success\":\"/tokenCreated\",\"data\":{\"currency\":\"taiji\",\"address\":\"0000FbBf26f6437AB8e3280A34743120dcB49E8c\",\"password\":\"123456\",\"name\":\"TEST\",\"symbol\":\"TEST\",\"totalSupply\":\"1000000000\",\"decimals\":\"9\"}}";
         final AtomicReference<ClientResponse> reference = new AtomicReference<>();
         try {
             ClientRequest request = new ClientRequest().setPath("/api/json").setMethod(Methods.POST);
             request.getRequestHeaders().put(Headers.CONTENT_TYPE, "application/json");
             request.getRequestHeaders().put(Headers.TRANSFER_ENCODING, "chunked");
-            connection.sendRequest(request, client.createClientCallback(reference, latch, "request body to be replaced"));
+            connection.sendRequest(request, client.createClientCallback(reference, latch, s));
             latch.await();
         } catch (Exception e) {
             logger.error("Exception: ", e);
@@ -59,6 +60,7 @@ public class CreateTokenTest {
         }
         int statusCode = reference.get().getResponseCode();
         String body = reference.get().getAttachment(Http2Client.RESPONSE_BODY);
+        System.out.println("body = " + body);
         Assert.assertEquals(200, statusCode);
         Assert.assertNotNull(body);
         */
