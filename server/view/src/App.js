@@ -3,10 +3,17 @@ import {Switch, Route} from 'react-router-dom';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory'
 import Home from './components/Home';
-import Balance from './components/Balance';
 import Wallet from './components/Wallet';
+import CurrencyBalance from './components/CurrencyBalance';
 import CurrencySent from './components/CurrencySent';
 import CurrencyTransaction from './components/CurrencyTransaction';
+import TokenCreated from './components/TokenCreated';
+import TokenApproved from './components/TokenApproved';
+import TokenTransferred from './components/TokenTransferred';
+import TokenWithdrawn from './components/TokenWithdrawn';
+import TokenInfo from './components/TokenInfo';
+import TokenAccount from './components/TokenAccount';
+import TokenTransaction from './components/TokenTransaction';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
 import Form from './components/Form';
 
@@ -99,10 +106,17 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/form/:formId" component={Form} />
-                        <Route path="/balance" component={Balance} />
+                        <Route path="/currencyBalance" component={CurrencyBalance} />
                         <Route path="/wallet" component={Wallet} />
                         <Route path="/currencySent" component={CurrencySent} />
                         <Route path="/currencyTransaction" component={CurrencyTransaction} />
+                        <Route path="/tokenCreated" component={TokenCreated} />
+                        <Route path="/tokenApproved" component={TokenApproved} />
+                        <Route path="/tokenWithdrawn" component={TokenWithdrawn} />
+                        <Route path="/tokenTransferred" component={TokenTransferred} />
+                        <Route path="/tokenInfo" component={TokenInfo} />
+                        <Route path="/tokenAccount" component={TokenAccount} />
+                        <Route path="/tokenTransaction" component={TokenTransaction} />
                     </Switch>
                 </ResponsiveDrawer>
             </Router>

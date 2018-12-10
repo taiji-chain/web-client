@@ -8,7 +8,7 @@ export const forms = {
                 action: 'balance',
                 version: '1.0.0',
                 title: 'Balance',
-                success: '/balance'
+                success: '/currencyBalance'
             }
         ],
         schema: {
@@ -203,7 +203,7 @@ export const forms = {
                 action: 'create',
                 version: '1.0.0',
                 title: 'Token',
-                success: '/token'
+                success: '/tokenCreated'
             }
         ],
         schema: {
@@ -263,7 +263,7 @@ export const forms = {
                 action: 'transfer',
                 version: '1.0.0',
                 title: 'Token',
-                success: '/transfer'
+                success: '/tokenTransferred'
             }
         ],
         schema: {
@@ -319,7 +319,7 @@ export const forms = {
                 action: 'approve',
                 version: '1.0.0',
                 title: 'Token',
-                success: '/approve'
+                success: '/tokenApproved'
             }
         ],
         schema: {
@@ -375,7 +375,7 @@ export const forms = {
                 action: 'withdraw',
                 version: '1.0.0',
                 title: 'Token',
-                success: '/withdraw'
+                success: '/tokenWithdrawn'
             }
         ],
         schema: {
