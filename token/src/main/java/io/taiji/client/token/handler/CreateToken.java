@@ -49,7 +49,7 @@ public class CreateToken implements Handler {
         // validate the total supply
         Long totalSupply = null;
         try {
-            totalSupply = new Long(totalSupplyString);
+            totalSupply = Long.valueOf(totalSupplyString);
         } catch (NumberFormatException e) {
             return NioUtils.toByteBuffer(getStatus(exchange, TOTAL_SUPPLY_NOT_NUMBER, totalSupplyString));
         }
@@ -93,7 +93,15 @@ public class CreateToken implements Handler {
                 .setNonce(nonce)
                 .build();
 
-        TokenCreatedEvent tokenCreatedEvent = new TokenCreatedEvent(eventId, currency, tokenAddress, name, symbol, total, decimals);
+        TokenCreatedEvent tokenCreatedEvent = TokenCreatedEvent.newBuilder()
+                .setEventId(eventId)
+                .setCurrency(currency)
+                .setEntityAddress(tokenAddress)
+                .setName(name)
+                .setSymbol(symbol)
+                .setTotalSupply(total)
+                .setDecimals(decimals)
+                .build();
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenCreatedEvent);

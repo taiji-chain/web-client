@@ -53,7 +53,7 @@ public class ApproveToken implements Handler {
 
         Long amount = null;
         try {
-            amount = new Long(amountString);
+            amount = Long.valueOf(amountString);
         } catch (NumberFormatException e) {
             return NioUtils.toByteBuffer(getStatus(exchange, AMOUNT_NOT_NUMBER, amountString));
         }
