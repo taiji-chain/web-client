@@ -1,7 +1,23 @@
 
 # Singleton service factory configuration/IoC injection
 singletons:
-# StartupHookProvider implementations, there are one to many and they are called in the same sequence defined.
-- com.networknt.server.StartupHookProvider:
-  # registry all service handlers by from annotations
-  - com.networknt.rpc.router.RpcStartupHookProvider
+  - com.networknt.registry.URL:
+      - com.networknt.registry.URLImpl:
+          protocol: https
+          host: localhost
+          port: 8080
+          path: direct
+          parameters:
+            com.networknt.chainwriter-1.0.0: https://localhost:8443
+            com.networknt.chainreader-1.0.0: https://localhost:8444
+            com.networknt.tokenreader-1.0.0: https://localhost:2499
+  - com.networknt.registry.Registry:
+      - com.networknt.registry.support.DirectRegistry
+  - com.networknt.balance.LoadBalance:
+      - com.networknt.balance.RoundRobinLoadBalance
+  - com.networknt.cluster.Cluster:
+      - com.networknt.cluster.LightCluster
+  # StartupHookProvider implementations, there are one to many and they are called in the same sequence defined.
+  - com.networknt.server.StartupHookProvider:
+    # registry all service handlers by from annotations
+    - com.networknt.rpc.router.RpcStartupHookProvider

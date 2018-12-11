@@ -42,7 +42,7 @@ enableRegistry: false
 # Dynamic port is used in situation that multiple services will be deployed on the same host and normally
 # you will have enableRegistry set to true so that other services can find the dynamic port service. When
 # deployed to Kubernetes cluster, the Pod must be annotated as hostNetwork: true
-dynamicPort: false
+dynamicPort: true
 
 # Minimum port range. This define a range for the dynamic allocated ports so that it is easier to setup
 # firewall rule to enable this range. Default 2400 to 2500 block has 100 port numbers and should be
