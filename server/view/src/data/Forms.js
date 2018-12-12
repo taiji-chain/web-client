@@ -251,7 +251,16 @@ export const forms = {
             }
         },
         form: [
-            '*'
+            'currency',
+            'address',
+            {
+                key: 'password',
+                type: 'password'
+            },
+            'name',
+            'symbol',
+            'totalSupply',
+            'decimals'
         ]
     },
     tokenTransferForm: {
