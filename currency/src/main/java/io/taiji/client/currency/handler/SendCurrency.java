@@ -43,7 +43,7 @@ public class SendCurrency implements Handler {
         // make sure that the amount is number and can be converted to long value.
         Long amount = null;
         try {
-            amount = new Long(amountString);
+            amount = Long.valueOf(amountString);
         } catch (NumberFormatException e) {
             return NioUtils.toByteBuffer(getStatus(exchange, AMOUNT_NOT_NUMBER, amountString));
         }

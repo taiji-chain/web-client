@@ -56,7 +56,7 @@ public class CreateToken implements Handler {
         // validate decimals
         Integer decimals = null;
         try {
-            decimals = new Integer(decimalsString);
+            decimals = Integer.valueOf(decimalsString);
         } catch (NumberFormatException e) {
             return NioUtils.toByteBuffer(getStatus(exchange, DECIMALS_NOT_NUMBER, decimalsString));
         }
