@@ -73,7 +73,8 @@ public class CreateToken implements Handler {
         }
         String tokenAddress = null;
         try {
-            tokenAddress = AddrGen.generateAddress(address.substring(0, 4));
+            AddressGenerator generator = new AddressGenerator(address.substring(0, 4));
+            tokenAddress = Keys.getAddress(generator.generate());
         } catch(Exception e) {
             logger.error("Exception:",e);
             return NioUtils.toByteBuffer(getStatus(exchange, FAIL_TO_GENERATE_TOKEN_ADDRESS, e.getMessage()));
