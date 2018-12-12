@@ -1,7 +1,7 @@
 ---
 description: RPC router description
 handlerPackage: io.taiji
-jsonPath: /api/json
+jsonPath: /api/webclient
 formPath: /api/form
 colferPath: /api/colfer
 resourcesBasePath: /

@@ -46,7 +46,7 @@ public class ResetPasswordTest {
         final String s = "{\"host\":\"taiji.io\",\"service\":\"wallet\",\"action\":\"reset\",\"version\":\"1.0.0\",\"data\":{\"address\":\"00000A3A878440702AbC03d4424d979fc67e2bBa\",\"oldPassword\":\"123456\",\"newPassword\":\"654321\",\"newPasswordConfirm\":\"654321\"}}";
         final AtomicReference<ClientResponse> reference = new AtomicReference<>();
         try {
-            ClientRequest request = new ClientRequest().setPath("/api/json").setMethod(Methods.POST);
+            ClientRequest request = new ClientRequest().setPath("/api/webclient").setMethod(Methods.POST);
             request.getRequestHeaders().put(Headers.CONTENT_TYPE, "application/json");
             request.getRequestHeaders().put(Headers.TRANSFER_ENCODING, "chunked");
             connection.sendRequest(request, client.createClientCallback(reference, latch, s));

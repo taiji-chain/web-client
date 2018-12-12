@@ -88,7 +88,7 @@ export function submitForm(action) {
         };
         console.log(request);
         try {
-            const response = await fetch('/api/json', request);
+            const response = await fetch('/api/webclient', request);
             const data = await response.json();
             console.log("data", data);
             dispatch({ type: SUBMIT_FORM_SUCCESS, payload: data });

@@ -62,11 +62,11 @@ chains:
     - json
 
 paths:
-  - path: '/api/json'
+  - path: '/api/webclient'
     method: 'GET'
     exec:
       - default
-  - path: '/api/json'
+  - path: '/api/webclient'
     method: 'POST'
     exec:
       - default

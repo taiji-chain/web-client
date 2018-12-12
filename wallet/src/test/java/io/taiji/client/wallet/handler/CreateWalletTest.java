@@ -46,7 +46,7 @@ public class CreateWalletTest {
         final AtomicReference<ClientResponse> reference = new AtomicReference<>();
         String s = "{\"host\":\"taiji.io\",\"service\":\"wallet\",\"action\":\"create\",\"version\":\"1.0.0\",\"data\":{\"password\":\"123456\",\"passwordConfirm\":\"123456\",\"region\":\"0000\"}}";
         try {
-            ClientRequest request = new ClientRequest().setPath("/api/json").setMethod(Methods.POST);
+            ClientRequest request = new ClientRequest().setPath("/api/webclient").setMethod(Methods.POST);
             request.getRequestHeaders().put(Headers.CONTENT_TYPE, "application/json");
             request.getRequestHeaders().put(Headers.TRANSFER_ENCODING, "chunked");
             connection.sendRequest(request, client.createClientCallback(reference, latch, s));
