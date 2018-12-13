@@ -12,7 +12,7 @@
     "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-schema-form": "^0.6.3",
+    "react-schema-form": "^0.6.4",
     "react-scripts": "2.1.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",

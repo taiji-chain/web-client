@@ -167,6 +167,12 @@ export const forms = {
         },
         form: [
             {
+                type: 'help',
+                description: 'Please be aware that it takes up to 3 minutes to get the wallet generated.',
+                variant: 'h6',
+                color: 'secondary'
+            },
+            {
                 key: 'password',
                 type: 'password'
             },
@@ -251,6 +257,12 @@ export const forms = {
             }
         },
         form: [
+            {
+                type: 'help',
+                description: 'Please be aware that it takes up to 3 minutes to get the token generated.',
+                variant: 'h6',
+                color: 'secondary'
+            },
             'currency',
             'address',
             {
