@@ -1,36 +1,40 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { toggleButtonAction } from "../actions";
-import Button from '@material-ui/core/Button';
+import {withStyles} from "@material-ui/core";
+
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    pre: {
+        'white-space': 'pre-wrap',
+    },
+});
 
 class Home extends Component {
     render() {
-        console.log(this.props);
-        const { toggleButton, toggleButtonAction } = this.props;
+        const { classes } = this.props;
         return (
             <div>
-                <pre>
-                    This is the faucet for the testnet. Please first create an address by following the <a href="https://doc.taiji.io/getting-started/">getting started guide</a> and come here to populate up to 1000 TAIJI coins per day.
+                <pre className={classes.pre}>
+                    This is the demo web-client for the taiji-blockchain testnet. Please first create a wallet by clicking the Create Wallet menu and then go to <a href="https://faucet.taiji.io" rel="noreferrer noopener" target="_blank">taiji faucet</a> to populate up to 1000 TAIJI coins to start. You can populate up to 1000 taiji conins per day.
                 </pre>
-                <pre>
-                    To learn more about the Taiji Blockchain, please visit <a href="https://doc.taiji.io/">doc.taiji.io</a>, <a href="https://github.com/networknt/taiji-blockchain">taiji-blockchain</a> and <a href="https://github.com/taiji-chain">taiji-chain organization</a>.
+                <pre className={classes.pre}>
+                    To learn more about the Taiji Blockchain, please visit <a href="https://doc.taiji.io/" rel="noreferrer noopener" target="_blank">doc.taiji.io</a>, <a href="https://github.com/networknt/taiji-blockchain" rel="noreferrer noopener" target="_blank">taiji-blockchain</a> and <a href="https://github.com/taiji-chain" rel="noreferrer noopener" target="_blank">taiji-chain organization</a>.
                 </pre>
-                <pre>
-                    If you have questions or want to discuss the features, please visit <a href="https://gitter.im/networknt/taiji-blockchain">gitter room</a> or <a href="https://www.reddit.com/r/TaijiChain/">TaijiChain Reddit</a>.
+                <pre className={classes.pre}>
+                    If you have questions or want to discuss the features, please visit <a href="https://gitter.im/networknt/taiji-blockchain" rel="noreferrer noopener" target="_blank">gitter room</a> or <a href="https://www.reddit.com/r/TaijiChain/" rel="noreferrer noopener" target="_blank">TaijiChain Reddit</a>.
                 </pre>
-                <div>{ toggleButton? "I am set to true" : "I am set to false"} </div>
-                <div><Button color="primary" variant="contained" onClick={toggleButtonAction}>Change Store State</Button></div>
+                <pre className={classes.pre}>
+                    If you find any UI problem, please open an issue at <a href="https://github.com/taiji-chain/web-client" rel="noreferrer noopener" target="_blank">web-client</a>
+                </pre>
+                <pre className={classes.pre}>
+                    If you find any internal or logical problem, please open an issue at <a href="https://github.com/networknt/taiji-blockchain" rel="noreferrer noopener" target="_blank">taiji-blockchain</a>
+                </pre>
+
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({
-    ...state.wallet
-});
-export default connect(
-    mapStateToProps,
-    {
-        toggleButtonAction
-    }
-)(Home);
+export default withStyles(styles)(Home);
