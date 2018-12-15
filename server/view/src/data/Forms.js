@@ -71,7 +71,7 @@ export const forms = {
                 service: 'currency',
                 action: 'send',
                 version: '1.0.0',
-                title: 'Balance',
+                title: 'Send',
                 success: '/currencySent'
             }
         ],
@@ -208,7 +208,7 @@ export const forms = {
                 service: 'token',
                 action: 'create',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Create',
                 success: '/tokenCreated'
             }
         ],
@@ -283,7 +283,7 @@ export const forms = {
                 service: 'token',
                 action: 'transfer',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Transfer',
                 success: '/tokenTransferred'
             }
         ],
@@ -339,7 +339,7 @@ export const forms = {
                 service: 'token',
                 action: 'approve',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Approve',
                 success: '/tokenApproved'
             }
         ],
@@ -395,7 +395,7 @@ export const forms = {
                 service: 'token',
                 action: 'withdraw',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Withdraw',
                 success: '/tokenWithdrawn'
             }
         ],
@@ -451,7 +451,7 @@ export const forms = {
                 service: 'token',
                 action: 'info',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Info',
                 success: '/tokenInfo'
             }
         ],
@@ -477,7 +477,7 @@ export const forms = {
                 service: 'token',
                 action: 'account',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Account',
                 success: '/tokenAccount'
             }
         ],
@@ -510,7 +510,7 @@ export const forms = {
                 service: 'token',
                 action: 'transaction',
                 version: '1.0.0',
-                title: 'Token',
+                title: 'Transaction',
                 success: '/tokenTransaction'
             }
         ],
