@@ -1,0 +1,92 @@
+{"taiji.io/kyc/create/1.0.0":{"schema": {
+        "title": "Create KYC",
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "enum": ["taiji"]
+          },
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["P", "B"]
+          },
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "currency",
+          "address",
+          "password",
+          "type",
+          "id",
+          "email",
+          "name"
+        ]
+      },"scope": "k.w"},"taiji.io/kyc/update/1.0.0":{"schema": {
+        "title": "Update KYC",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "password"
+        ]
+      },"scope": "t.w"},"taiji.io/kyc/info/1.0.0":{"schema": {
+        "title": "KYC Info",
+        "type": "object",
+        "properties": {
+          "addressOrIdOrEmail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "addressOrIdOrEmail"
+        ]
+      },"scope": "t.w"},"taiji.io/kyc/events/1.0.0":{"schema": {
+        "title": "KYC Events",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address"
+        ]
+      },"scope": "t.r"}}
