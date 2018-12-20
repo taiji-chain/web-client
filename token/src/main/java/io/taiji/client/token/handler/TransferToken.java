@@ -56,7 +56,7 @@ public class TransferToken implements Handler {
         Credentials credentials;
         try {
             credentials = loadWalletFromAddress(address, password);
-        } catch (IOException | CipherException e) {
+        } catch (Exception e) {
             logger.error("Exception:", e);
             return NioUtils.toByteBuffer(getStatus(exchange, WALLET_CANNOT_LOAD, address));
         }
@@ -149,7 +149,7 @@ public class TransferToken implements Handler {
         }
     }
 
-    Credentials loadWalletFromAddress(String address, String password) throws IOException, CipherException {
+    Credentials loadWalletFromAddress(String address, String password) throws Exception {
         InputStream is = Config.getInstance().getInputStreamFromFile(address + ".json");
         return WalletUtils.loadCredentials(password, is);
     }
