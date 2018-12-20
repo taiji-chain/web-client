@@ -535,6 +535,201 @@ export const forms = {
             '*'
         ]
     },
-
+    kycCreateForm: {
+        formId: 'kycCreateForm',
+        actions: [
+            {
+                host: 'taiji.io',
+                service: 'kyc',
+                action: 'create',
+                version: '1.0.0',
+                title: 'Create',
+                success: '/kycCreated'
+            }
+        ],
+        schema: {
+            type: 'object',
+            required: [
+                'currency',
+                'address',
+                'password',
+                'type',
+                'id',
+                'email',
+                'name',
+                'tags',
+                'description'
+            ],
+            title: 'Create KYC',
+            properties: {
+                currency: {
+                    title: 'Currency',
+                    type: 'string',
+                    enum: ['taiji']
+                },
+                address: {
+                    title: 'Address',
+                    type: 'string'
+                },
+                password: {
+                    title: 'Password',
+                    type: 'string'
+                },
+                type: {
+                    title: 'Type',
+                    type: 'string',
+                    enum: ['P', 'B']
+                },
+                id: {
+                    title: 'Id',
+                    type: 'string'
+                },
+                email: {
+                    title: 'Email',
+                    type: 'string'
+                },
+                name: {
+                    title: 'Token Name',
+                    type: 'string'
+                },
+                tags: {
+                    title: 'Tags',
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    }
+                },
+                description: {
+                    title: 'Description',
+                    type: 'string'
+                }
+            }
+        },
+        form: [
+            'currency',
+            'address',
+            {
+                key: 'password',
+                type: 'password'
+            },
+            'type',
+            'id',
+            'email',
+            'name',
+            'tags',
+            'description'
+        ]
+    },
+    kycUpdateForm: {
+        formId: 'kycUpdateForm',
+        actions: [
+            {
+                host: 'taiji.io',
+                service: 'kyc',
+                action: 'update',
+                version: '1.0.0',
+                title: 'Update',
+                success: '/kycUpdated'
+            }
+        ],
+        schema: {
+            type: 'object',
+            required: [
+                'address',
+                'password'
+            ],
+            title: 'Update KYC',
+            properties: {
+                address: {
+                    title: 'Address',
+                    type: 'string'
+                },
+                password: {
+                    title: 'Password',
+                    type: 'string'
+                },
+                name: {
+                    title: 'Token Name',
+                    type: 'string'
+                },
+                tags: {
+                    title: 'Tags',
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    }
+                },
+                description: {
+                    title: 'Description',
+                    type: 'string'
+                }
+            }
+        },
+        form: [
+            'address',
+            {
+                key: 'password',
+                type: 'password'
+            },
+            'name',
+            'tags',
+            'description'
+        ]
+    },
+    kycInfoForm: {
+        formId: 'kycInfoForm',
+        actions: [
+            {
+                host: 'taiji.io',
+                service: 'kyc',
+                action: 'info',
+                version: '1.0.0',
+                title: 'Info',
+                success: '/kycInfo'
+            }
+        ],
+        schema: {
+            type: 'object',
+            title: 'KYC Info',
+            properties: {
+                addressOrIdOrEmail: {
+                    title: 'Address or Id or Email',
+                    type: 'string'
+                }
+            }
+        },
+        form: [
+            '*'
+        ]
+    },
+    kycEventForm: {
+        formId: 'kycEventForm',
+        actions: [
+            {
+                host: 'taiji.io',
+                service: 'kyc',
+                action: 'event',
+                version: '1.0.0',
+                title: 'Event',
+                success: '/kycEvent'
+            }
+        ],
+        schema: {
+            type: 'object',
+            title: 'KYC Event',
+            properties: {
+                address: {
+                    title: 'Address',
+                    type: 'string'
+                }
+            },
+            required: [
+                'address'
+            ]
+        },
+        form: [
+            '*'
+        ]
+    }
 };
 

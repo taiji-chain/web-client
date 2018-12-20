@@ -14,6 +14,10 @@ import TokenWithdrawn from './components/TokenWithdrawn';
 import TokenInfo from './components/TokenInfo';
 import TokenAccount from './components/TokenAccount';
 import TokenTransaction from './components/TokenTransaction';
+import KycCreated from './components/KycCreated';
+import KycUpdated from './components/KycUpdated';
+import KycInfo from './components/KycInfo';
+import KycEvent from './components/KycEvent';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
 import Form from './components/Form';
 
@@ -117,6 +121,10 @@ class App extends Component {
                         <Route path="/tokenInfo" component={TokenInfo} />
                         <Route path="/tokenAccount" component={TokenAccount} />
                         <Route path="/tokenTransaction" component={TokenTransaction} />
+                        <Route path="/kycCreated" component={KycCreated} />
+                        <Route path="/kycUpdated" component={KycUpdated} />
+                        <Route path="/kycInfo" component={KycInfo} />
+                        <Route path="/kycEvent" component={KycEvent} />
                     </Switch>
                 </ResponsiveDrawer>
             </Router>

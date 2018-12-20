@@ -105,6 +105,19 @@ class ResponsiveDrawer extends Component {
                     <MenuItem component={Link} to="/form/tokenTransactionForm" selected={'/form/tokenTransactionForm' === pathname}>
                         Token Transaction
                     </MenuItem>
+                    <Divider />
+                    <MenuItem component={Link} to="/form/kycCreateForm" selected={'/form/kycCreateForm' === pathname}>
+                        Create KYC
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/kycUpdateForm" selected={'/form/kycUpdateForm' === pathname}>
+                        Update KYC
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/kycInfoForm" selected={'/form/kycInfoForm' === pathname}>
+                        KYC Info
+                    </MenuItem>
+                    <MenuItem component={Link} to="/form/kycEventForm" selected={'/form/kycEventForm' === pathname}>
+                        KYC Event
+                    </MenuItem>
                 </MenuList>
             </div>
         );
