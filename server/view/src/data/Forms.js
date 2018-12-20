@@ -555,7 +555,8 @@ export const forms = {
                 'password',
                 'type',
                 'id',
-                'email'
+                'email',
+                'name'
             ],
             title: 'Create KYC',
             properties: {
@@ -709,7 +710,7 @@ export const forms = {
             {
                 host: 'taiji.io',
                 service: 'kyc',
-                action: 'event',
+                action: 'events',
                 version: '1.0.0',
                 title: 'Event',
                 success: '/kycEvent'
