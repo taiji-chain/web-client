@@ -112,6 +112,11 @@
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
+            <artifactId>taiji-kyc</artifactId>
+            <version>${version.blockchain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
             <artifactId>avro-serializer</artifactId>
             <version>${version.blockchain}</version>
         </dependency>
