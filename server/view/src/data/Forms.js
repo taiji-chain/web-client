@@ -586,7 +586,7 @@ export const forms = {
                     type: 'string'
                 },
                 name: {
-                    title: 'Token Name',
+                    title: 'Name',
                     type: 'string'
                 },
                 tags: {
@@ -598,7 +598,8 @@ export const forms = {
                 },
                 description: {
                     title: 'Description',
-                    type: 'string'
+                    type: 'string',
+                    maxLength: 200
                 }
             }
         },
@@ -614,7 +615,10 @@ export const forms = {
             'email',
             'name',
             'tags',
-            'description'
+            {
+                key: 'description',
+                type: 'textarea'
+            }
         ]
     },
     kycUpdateForm: {
