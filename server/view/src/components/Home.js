@@ -31,7 +31,9 @@ class Home extends Component {
                 <pre className={classes.pre}>
                     If you find any internal or logical problem, please open an issue at <a href="https://github.com/networknt/taiji-blockchain" rel="noreferrer noopener" target="_blank">taiji-blockchain</a>
                 </pre>
-
+                <pre className={classes.pre}>
+                    Dec 20 - Update wallet format to include encryption key pair and add KYC - Know Your Client application. All existing wallet are removed.
+                </pre>
             </div>
         )
     }

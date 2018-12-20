@@ -555,10 +555,7 @@ export const forms = {
                 'password',
                 'type',
                 'id',
-                'email',
-                'name',
-                'tags',
-                'description'
+                'email'
             ],
             title: 'Create KYC',
             properties: {
@@ -649,7 +646,7 @@ export const forms = {
                     type: 'string'
                 },
                 name: {
-                    title: 'Token Name',
+                    title: 'KYC Name',
                     type: 'string'
                 },
                 tags: {
