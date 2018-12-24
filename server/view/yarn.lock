@@ -8134,10 +8134,10 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-react-schema-form@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/react-schema-form/-/react-schema-form-0.6.4.tgz#62b2b8e88b763fa2a070ef32204a7038ded84b35"
-  integrity sha512-kF4gR6mtKegYqO+5oJ1QgOcr/9zZncpNrTN+H/gN86EtrElyaGO+O7Wq8/PIW4tFvVPfcP8qRqWmA05ibOvQxQ==
+react-schema-form@^0.6.6:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/react-schema-form/-/react-schema-form-0.6.6.tgz#c2c7ef81ea98925165689274fbcd5e3989c215e3"
+  integrity sha512-Q7p6rVW91PYOvS6I9GDrlAS2ELBYdphIsFm6oHZL7TS9bo7hzDfkP3D+IggohKwmjD/o1zOy7Z0dfkd+NFUTbA==
   dependencies:
     classnames "^2.2.6"
     lodash "^4.17.11"
