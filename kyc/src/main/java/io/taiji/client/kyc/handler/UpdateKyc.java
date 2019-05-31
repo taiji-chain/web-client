@@ -10,7 +10,7 @@ import com.networknt.taiji.avro.AvroSerializer;
 import com.networknt.taiji.client.TaijiClient;
 import com.networknt.taiji.crypto.*;
 import com.networknt.taiji.event.EventId;
-import com.networknt.taiji.event.JsonMapper;
+import com.networknt.config.JsonMapper;
 import com.networknt.taiji.kyc.KycUpdatedEvent;
 import com.networknt.utility.NioUtils;
 import io.undertow.server.HttpServerExchange;

@@ -3,7 +3,7 @@ package io.taiji.client.wallet.handler;
 
 import com.networknt.taiji.crypto.CipherException;
 import com.networknt.taiji.crypto.WalletUtils;
-import com.networknt.taiji.event.JsonMapper;
+import com.networknt.config.JsonMapper;
 import com.networknt.utility.NioUtils;
 import com.networknt.rpc.Handler;
 import com.networknt.rpc.router.ServiceHandler;
@@ -18,8 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.undertow.server.HttpServerExchange;
-
-import static com.networknt.chain.utility.Console.exitError;
 
 @ServiceHandler(id="taiji.io/wallet/create/1.0.0")
 public class CreateWallet implements Handler {

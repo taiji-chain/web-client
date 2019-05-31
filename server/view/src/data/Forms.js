@@ -590,6 +590,10 @@ export const forms = {
                     title: 'Name',
                     type: 'string'
                 },
+                referralAddress: {
+                    title: 'Referral Address',
+                    type: 'string'
+                },
                 tags: {
                     title: 'Tags',
                     type: 'array',
@@ -615,6 +619,7 @@ export const forms = {
             'id',
             'email',
             'name',
+            'referralAddress',
             'tags',
             {
                 key: 'description',

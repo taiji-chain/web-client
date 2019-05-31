@@ -25,6 +25,9 @@
           "name": {
             "type": "string"
           },
+          "referralAddress": {
+            "type": "string"
+          },
           "tags": {
             "type": "array",
             "items": "string"

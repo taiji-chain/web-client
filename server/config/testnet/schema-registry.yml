@@ -1,3 +1,3 @@
 serverUrls:
-  - http://38.113.162.50:8080
-autoRegisterSchema: false
+  - http://38.113.162.50:8081
+autoRegisterSchema: true

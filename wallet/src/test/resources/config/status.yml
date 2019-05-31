@@ -1000,6 +1000,42 @@ ERR12212:
   code: ERR12212
   message: CREATE_WALLET_ERROR
   description: Error creating wallet %s
+ERR12213:
+  statusCode: 400
+  code: ERR12213
+  message: WALLET_CANNOT_LOAD
+  description: Error in loading wallet for address %s
+ERR12214:
+  statusCode: 400
+  code: ERR12214
+  message: INVALID_WALLET_ADDRESS
+  description: Invalid wallet address %s
+ERR12215:
+  statusCode: 400
+  code: ERR12215
+  message: AMOUNT_NOT_NUMBER
+  description: Amount %s is not a valid number
+ERR12216:
+  statusCode: 400
+  code: ERR12216
+  message: FAIL_TO_CONNECT
+  description: Failed to connect to the Chain Writer service
+ERR12217:
+  statusCode: 400
+  code: ERR12217
+  message: TOTAL_SUPPLY_NOT_NUMBER
+  description: Token total supply %s is not a number
+ERR12218:
+  statusCode: 400
+  code: ERR12218
+  message: DECIMALS_NOT_NUMBER
+  description: Token decimals %s is not a number
+ERR12219:
+  statusCode: 400
+  code: ERR12219
+  message: FAIL_TO_GENERATE_TOKEN_ADDRESS
+  description: Fail to generate token address with exception %s
+
 
 
 # 20000-29999 common error codes within your business domain.

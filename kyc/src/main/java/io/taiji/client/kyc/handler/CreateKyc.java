@@ -9,7 +9,7 @@ import com.networknt.taiji.avro.AvroSerializer;
 import com.networknt.taiji.client.TaijiClient;
 import com.networknt.taiji.crypto.*;
 import com.networknt.taiji.event.EventId;
-import com.networknt.taiji.event.JsonMapper;
+import com.networknt.config.JsonMapper;
 import com.networknt.taiji.kyc.KycCreatedEvent;
 import com.networknt.taiji.kyc.KycType;
 import com.networknt.utility.NioUtils;
@@ -31,6 +31,7 @@ import io.undertow.server.HttpServerExchange;
 public class CreateKyc implements Handler {
     static final String WALLET_CANNOT_LOAD = "ERR12213";
     static final String FAIL_TO_CONNECT = "ERR122216";
+    static final String INVALID_REFERRAL_ADDRESS = "ERR12220";
 
     @Override
     public ByteBuffer handle(HttpServerExchange exchange, Object input)  {
@@ -42,11 +43,18 @@ public class CreateKyc implements Handler {
         String id = (String)map.get("id");
         String email = (String)map.get("email");
         String name = (String)map.get("name");
+        String referralAddress = (String)map.get("referralAddress");
         List<String> tags = (List<String>)map.get("tags");
         String description = (String)map.get("description");
 
         // validate the email is formatted correctly?
         // don't validate if the id and email is used already. Let the server to do it.
+
+        // validate the referral address
+        if(referralAddress != null && !Keys.validateToAddress(referralAddress)) {
+            return NioUtils.toByteBuffer(getStatus(exchange, INVALID_REFERRAL_ADDRESS, referralAddress));
+        }
+
         Credentials credentials;
         try {
             credentials = loadWalletFromAddress(address, password);
@@ -77,6 +85,7 @@ public class CreateKyc implements Handler {
                 .setEmail(email)
                 .setKey(Numeric.toHexString(credentials.getEncryptingKeyPair().getPublic().getEncoded()))
                 .setName(name)
+                .setReferralAddress(referralAddress)
                 .setTags(tags)
                 .setDescription(description)
                 .build();

@@ -1,13 +1,13 @@
 package io.taiji.client.token.handler;
 
 import com.networknt.config.Config;
+import com.networknt.config.JsonMapper;
 import com.networknt.monad.Result;
 import com.networknt.status.Status;
 import com.networknt.taiji.avro.AvroSerializer;
 import com.networknt.taiji.client.TaijiClient;
 import com.networknt.taiji.crypto.*;
 import com.networknt.taiji.event.EventId;
-import com.networknt.taiji.event.JsonMapper;
 import com.networknt.taiji.token.TokenCreatedEvent;
 import com.networknt.taiji.utility.Converter;
 import com.networknt.utility.NioUtils;
