@@ -1,12 +1,26 @@
 
 package io.taiji.client.currency.handler;
 
+import com.networknt.client.Http2Client;
 import com.networknt.exception.ApiException;
 import com.networknt.exception.ClientException;
+import io.undertow.UndertowOptions;
+import io.undertow.client.ClientConnection;
+import io.undertow.client.ClientRequest;
+import io.undertow.client.ClientResponse;
+import io.undertow.util.Headers;
+import io.undertow.util.Methods;
+import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xnio.IoUtils;
+import org.xnio.OptionMap;
+
+import java.net.URI;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GetTransactionTest {
     @ClassRule
@@ -21,7 +35,6 @@ public class GetTransactionTest {
 
     @Test
     public void testGetTransaction() throws ClientException, ApiException {
-        /*
         final Http2Client client = Http2Client.getInstance();
         final CountDownLatch latch = new CountDownLatch(1);
         final ClientConnection connection;
@@ -30,12 +43,14 @@ public class GetTransactionTest {
         } catch (Exception e) {
             throw new ClientException(e);
         }
+        //final String s = "{\"host\":\"taiji.io\",\"service\":\"currency\",\"action\":\"transaction\",\"version\":\"1.0.0\",\"data\":{\"address\":\"0000Ff14aD21d03D20b7eE96d031552cf9dD9072\",\"currency\":\"taiji\"}}";
+        final String s = "{\"host\":\"taiji.io\",\"service\":\"currency\",\"action\":\"transaction\",\"version\":\"1.0.0\",\"data\":{\"address\":\"0002BEFf9A0eAD7026A42aDe3FF008cD46e5B2A5\",\"currency\":\"taiji\"}}";
         final AtomicReference<ClientResponse> reference = new AtomicReference<>();
         try {
             ClientRequest request = new ClientRequest().setPath("/api/webclient").setMethod(Methods.POST);
             request.getRequestHeaders().put(Headers.CONTENT_TYPE, "application/json");
             request.getRequestHeaders().put(Headers.TRANSFER_ENCODING, "chunked");
-            connection.sendRequest(request, client.createClientCallback(reference, latch, "request body to be replaced"));
+            connection.sendRequest(request, client.createClientCallback(reference, latch, s));
             latch.await();
         } catch (Exception e) {
             logger.error("Exception: ", e);
@@ -45,8 +60,8 @@ public class GetTransactionTest {
         }
         int statusCode = reference.get().getResponseCode();
         String body = reference.get().getAttachment(Http2Client.RESPONSE_BODY);
+        System.out.println("status = " + statusCode  + " body = " + body);
         Assert.assertEquals(200, statusCode);
         Assert.assertNotNull(body);
-        */
     }
 }

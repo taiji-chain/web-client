@@ -44,7 +44,8 @@ public class GetBalanceTest {
         } catch (Exception e) {
             throw new ClientException(e);
         }
-        final String s = "{\"host\":\"taiji.io\",\"service\":\"currency\",\"action\":\"balance\",\"version\":\"1.0.0\",\"data\":{\"address\":\"0000Ff14aD21d03D20b7eE96d031552cf9dD9072\"}}";
+        //final String s = "{\"host\":\"taiji.io\",\"service\":\"currency\",\"action\":\"balance\",\"version\":\"1.0.0\",\"data\":{\"address\":\"0000Ff14aD21d03D20b7eE96d031552cf9dD9072\"}}";
+        final String s = "{\"host\":\"taiji.io\",\"service\":\"currency\",\"action\":\"balance\",\"version\":\"1.0.0\",\"data\":{\"address\":\"0002BEFf9A0eAD7026A42aDe3FF008cD46e5B2A5\"}}";
         final AtomicReference<ClientResponse> reference = new AtomicReference<>();
         try {
             ClientRequest request = new ClientRequest().setPath("/api/webclient").setMethod(Methods.POST);
