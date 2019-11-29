@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { Router } from 'react-router';
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history';
 import Home from './components/Home';
 import Wallet from './components/Wallet';
 import CurrencyBalance from './components/CurrencyBalance';

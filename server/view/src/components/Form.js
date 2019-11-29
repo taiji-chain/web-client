@@ -14,17 +14,17 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     formControl: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         minWidth: 120,
     },
     selectEmpty: {
-        marginTop: theme.spacing.unit * 2,
+        marginTop: theme.spacing(2),
     },
     progress: {
-        margin: theme.spacing.unit * 2,
+        margin: theme.spacing(2),
     },
     button: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
     },
 });
 
@@ -43,7 +43,7 @@ class Form extends Component {
         }
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
+    componentDidUpdate(nextProps, nextState, nextContext) {
         if(this.state.formId !== nextProps.match.params.formId) {
             let formData = forms[this.props.match.params.formId];
             this.setState({
