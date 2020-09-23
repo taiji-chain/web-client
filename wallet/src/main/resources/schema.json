@@ -1,6 +1,6 @@
 {"taiji.io/wallet/close/1.0.0":{"schema": {
         "title": "Close Wallet"
-      },"scope": "t.w"},"taiji.io/wallet/reset/1.0.0":{"schema": {
+      },"scope":"t.w"},"taiji.io/wallet/reset/1.0.0":{"schema": {
         "title": "Service",
         "type": "object",
         "properties": {
@@ -17,7 +17,7 @@
             "type": "string"
           }
         }
-      },"scope": "t.w"},"taiji.io/wallet/open/1.0.0":{"schema": {
+      },"scope":"t.w"},"taiji.io/wallet/open/1.0.0":{"schema": {
         "title": "Open Wallet",
         "type": "object",
         "properties": {
@@ -28,7 +28,7 @@
             "type": "string"
           }
         }
-      },"scope": "t.w"},"taiji.io/wallet/create/1.0.0":{"schema": {
+      },"scope":"t.w"},"taiji.io/wallet/create/1.0.0":{"schema": {
         "title": "Service",
         "type": "object",
         "properties": {
@@ -47,4 +47,4 @@
           "passwordConfirm",
           "region"
         ]
-      },"scope": "t.w"}}
+      },"scope":"t.w"}}

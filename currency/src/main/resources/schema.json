@@ -16,7 +16,7 @@
           "address",
           "currency"
         ]
-      },"scope": "t.r"},"taiji.io/currency/send/1.0.0":{"schema": {
+      },"scope":"t.r"},"taiji.io/currency/send/1.0.0":{"schema": {
         "title": "Send Currency",
         "type": "object",
         "properties": {
@@ -47,7 +47,7 @@
           "amount",
           "unit"
         ]
-      },"scope": "t.w"},"taiji.io/currency/balance/1.0.0":{"schema": {
+      },"scope":"t.w"},"taiji.io/currency/balance/1.0.0":{"schema": {
         "title": "Currency Balance",
         "type": "object",
         "properties": {
@@ -58,4 +58,4 @@
         "required": [
           "address"
         ]
-      },"scope": "t.r"}}
+      },"scope":"t.r"}}

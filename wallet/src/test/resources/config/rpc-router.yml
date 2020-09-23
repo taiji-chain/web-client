@@ -1,0 +1,3 @@
+
+handlerPackage: 'io.taiji.client.wallet.handler'
+jsonPath: /api/webclient
