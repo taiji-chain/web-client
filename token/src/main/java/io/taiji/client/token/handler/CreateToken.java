@@ -43,6 +43,7 @@ public class CreateToken implements Handler {
         String address = map.get("address");
         String password = map.get("password");
         String name = map.get("name");
+        String description = map.get("description");
         String symbol = map.get("symbol");
         String totalSupplyString = map.get("totalSupply");
         String decimalsString = map.get("decimals");
@@ -93,12 +94,15 @@ public class CreateToken implements Handler {
                 .setAddress(address)
                 .setNonce(nonce)
                 .build();
+        Map<String, Object> valueMap = new HashMap<>();
+        valueMap.put("name", name);
+        valueMap.put("description", description);
 
         TokenCreatedEvent tokenCreatedEvent = TokenCreatedEvent.newBuilder()
                 .setEventId(eventId)
                 .setCurrency(currency)
                 .setEntityAddress(tokenAddress)
-                .setName(name)
+                .setValue(JsonMapper.toJson(valueMap))
                 .setSymbol(symbol)
                 .setTotalSupply(total)
                 .setDecimals(decimals)

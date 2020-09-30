@@ -4,7 +4,7 @@
 set -ex
 
 VERSION=$1
-IMAGE_NAME="networknt/io.taiji.server-1.0.0"
+IMAGE_NAME="networknt/taiji-server-1.0.0"
 
 showHelp() {
     echo " "

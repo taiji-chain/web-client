@@ -45,6 +45,7 @@ public class ApproveToken implements Handler {
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
         String toAddress = map.get("toAddress");
         String amountString = map.get("amount");
+        String comment = map.get("comment");
 
         // validate if the fromAddress is formatted correctly.
         if (!Keys.validateToAddress(toAddress)) {
@@ -112,8 +113,16 @@ public class ApproveToken implements Handler {
                 .setAddress(address)
                 .setNonce(nonce)
                 .build();
-
-        TokenApprovedEvent tokenApprovedEvent = new TokenApprovedEvent(eventId, symbol, toAddress, total);
+        Map<String, Object> valueMap = new HashMap<>();
+        if(comment != null) valueMap.put("comment", comment);
+        TokenApprovedEvent tokenApprovedEvent = TokenApprovedEvent.newBuilder()
+                .setEventId(eventId)
+                .setSymbol(symbol)
+                .setToAddress(toAddress)
+                .setAmount(total)
+                .setValue(JsonMapper.toJson(valueMap))
+                .setTimestamp(System.currentTimeMillis())
+                .build();
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenApprovedEvent);

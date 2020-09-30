@@ -44,6 +44,7 @@ public class TransferToken implements Handler {
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
         String toAddress = map.get("toAddress");
         String amountString = map.get("amount");
+        String comment = map.get("comment");
 
         Long amount = null;
         try {
@@ -110,8 +111,16 @@ public class TransferToken implements Handler {
                 .setAddress(address)
                 .setNonce(nonce)
                 .build();
-
-        TokenTransferredEvent tokenTransferredEvent = new TokenTransferredEvent(eventId, symbol, toAddress, total);
+        Map<String, Object> valueMap = new HashMap<>();
+        if(comment != null) valueMap.put("comment", comment);
+        TokenTransferredEvent tokenTransferredEvent = TokenTransferredEvent.newBuilder()
+                .setEventId(eventId)
+                .setSymbol(symbol)
+                .setToAddress(toAddress)
+                .setAmount(total)
+                .setValue(JsonMapper.toJson(valueMap))
+                .setTimestamp(System.currentTimeMillis())
+                .build();
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenTransferredEvent);

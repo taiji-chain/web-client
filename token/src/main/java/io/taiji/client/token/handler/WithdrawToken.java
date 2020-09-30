@@ -49,6 +49,7 @@ public class WithdrawToken implements Handler {
         String tokenAddressOrSymbol = map.get("tokenAddressOrSymbol");
         String fromAddress = map.get("fromAddress");
         String amountString = map.get("amount");
+        String comment = map.get("comment");
 
         if(logger.isDebugEnabled()) logger.debug("address = " + address + " tokenAddressOrSymbol = " + tokenAddressOrSymbol + " fromAddress = " + fromAddress + " amount = " + amountString);
 
@@ -117,8 +118,16 @@ public class WithdrawToken implements Handler {
                 .setAddress(address)
                 .setNonce(nonce)
                 .build();
-
-        TokenWithdrewEvent tokenWithdrewEvent = new TokenWithdrewEvent(eventId, symbol, fromAddress, total);
+        Map<String, Object> valueMap = new HashMap<>();
+        if(comment != null) valueMap.put("comment", comment);
+        TokenWithdrewEvent tokenWithdrewEvent = TokenWithdrewEvent.newBuilder()
+                .setEventId(eventId)
+                .setSymbol(symbol)
+                .setFromAddress(fromAddress)
+                .setAmount(total)
+                .setValue(JsonMapper.toJson(valueMap))
+                .setTimestamp(System.currentTimeMillis())
+                .build();
 
         AvroSerializer serializer = new AvroSerializer();
         byte[] bytes = serializer.serialize(tokenWithdrewEvent);
