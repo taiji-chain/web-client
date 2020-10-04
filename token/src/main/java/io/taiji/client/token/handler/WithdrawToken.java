@@ -105,11 +105,11 @@ public class WithdrawToken implements Handler {
         long factor = Converter.power(10, decimals);
         long total = amount * factor;
         if(logger.isDebugEnabled()) logger.debug("tokenAddress = " + tokenAddress + " currency = " + currency + " decimals = " + decimals);
-        // get number of transactions from the chain-reader to generate eventId.
         long nonce = 0;
-        Result<List<SignedLedgerEntry>> nonceResult = TaijiClient.getTransaction(address, currency);
+        Result<String> nonceResult = TaijiClient.getTransaction(address, currency, 0, 1);
         if(nonceResult.isSuccess()) {
-            nonce = nonceResult.getResult().size();
+            List<Map<String, Object>> txs = JsonMapper.string2List(nonceResult.getResult());
+            nonce = (Long)txs.get(0).get("no") + 1;
         } else {
             return NioUtils.toByteBuffer(getStatus(exchange, nonceResult.getError()));
         }
