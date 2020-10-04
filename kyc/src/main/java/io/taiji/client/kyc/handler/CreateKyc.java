@@ -3,9 +3,9 @@ package io.taiji.client.kyc.handler;
 
 import com.networknt.chain.utility.Numeric;
 import com.networknt.config.Config;
+import com.networknt.kafka.common.AvroSerializer;
 import com.networknt.monad.Result;
 import com.networknt.status.Status;
-import com.networknt.taiji.avro.AvroSerializer;
 import com.networknt.taiji.client.TaijiClient;
 import com.networknt.taiji.crypto.*;
 import com.networknt.taiji.event.EventId;

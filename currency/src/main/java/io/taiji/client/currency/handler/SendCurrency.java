@@ -1,28 +1,22 @@
 
 package io.taiji.client.currency.handler;
 
-import com.networknt.chain.utility.Console;
 import com.networknt.config.Config;
 import com.networknt.config.JsonMapper;
 import com.networknt.monad.Result;
+import com.networknt.rpc.Handler;
+import com.networknt.rpc.router.ServiceHandler;
 import com.networknt.status.Status;
 import com.networknt.taiji.client.TaijiClient;
 import com.networknt.taiji.crypto.*;
 import com.networknt.taiji.utility.Converter;
 import com.networknt.utility.NioUtils;
-import com.networknt.rpc.Handler;
-import com.networknt.rpc.router.ServiceHandler;
+import io.undertow.server.HttpServerExchange;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CyclicBarrier;
-
-import io.undertow.server.HttpServerExchange;
-
-import static com.networknt.chain.utility.Console.exitError;
 
 @ServiceHandler(id="taiji.io/currency/send/1.0.0")
 public class SendCurrency implements Handler {

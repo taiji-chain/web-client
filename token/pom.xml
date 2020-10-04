@@ -96,8 +96,8 @@
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
-            <artifactId>avro-serializer</artifactId>
-            <version>${version.blockchain}</version>
+            <artifactId>kafka-common</artifactId>
+            <version>${version.light-4j}</version>
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>

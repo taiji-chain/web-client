@@ -3,14 +3,13 @@ package io.taiji.client.token.handler;
 
 import com.networknt.config.Config;
 import com.networknt.config.JsonMapper;
+import com.networknt.kafka.common.AvroSerializer;
 import com.networknt.monad.Result;
 import com.networknt.status.Status;
-import com.networknt.taiji.avro.AvroSerializer;
 import com.networknt.taiji.client.TaijiClient;
 import com.networknt.taiji.crypto.*;
 import com.networknt.taiji.event.EventId;
 import com.networknt.taiji.token.TokenApprovedEvent;
-import com.networknt.taiji.token.TokenWithdrewEvent;
 import com.networknt.taiji.utility.Converter;
 import com.networknt.utility.NioUtils;
 import com.networknt.rpc.Handler;
@@ -105,7 +104,7 @@ public class ApproveToken implements Handler {
         Result<String> nonceResult = TaijiClient.getTransaction(address, currency, 0, 1);
         if(nonceResult.isSuccess()) {
             List<Map<String, Object>> txs = JsonMapper.string2List(nonceResult.getResult());
-            nonce = (Long)txs.get(0).get("no") + 1;
+            nonce = (Integer)txs.get(0).get("no") + 1;
         } else {
             return NioUtils.toByteBuffer(getStatus(exchange, nonceResult.getError()));
         }
