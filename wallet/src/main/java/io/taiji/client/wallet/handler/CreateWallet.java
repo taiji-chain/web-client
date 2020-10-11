@@ -19,10 +19,16 @@ import java.util.Map;
 
 import io.undertow.server.HttpServerExchange;
 
+import static com.networknt.config.Config.LIGHT_4J_CONFIG_DIR;
+
 @ServiceHandler(id="taiji.io/wallet/create/1.0.0")
 public class CreateWallet implements Handler {
     private static final String PASSWORD_CONFIRM_NOT_MATCH = "ERR12211";
     private static final String CREATE_WALLET_ERROR = "ERR12212";
+
+    public static String getDefaultKeyDirectory() {
+        return System.getProperty(LIGHT_4J_CONFIG_DIR);
+    }
 
     @Override
     public ByteBuffer handle(HttpServerExchange exchange, Object input)  {
@@ -32,7 +38,7 @@ public class CreateWallet implements Handler {
         if(password.equals(passwordConfirm)) {
             String chainId = map.get("region");
             File destination = null;
-            String destDir = WalletUtils.getDefaultKeyDirectory();
+            String destDir = getDefaultKeyDirectory();
             if(destDir == null) {
                 ClassLoader classLoader = getClass().getClassLoader();
                 destination = new File(classLoader.getResource("config").getFile());
