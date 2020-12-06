@@ -18,11 +18,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.undertow.server.HttpServerExchange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.networknt.config.Config.LIGHT_4J_CONFIG_DIR;
 
 @ServiceHandler(id="taiji.io/wallet/create/1.0.0")
 public class CreateWallet implements Handler {
+    static final Logger logger = LoggerFactory.getLogger(CreateWallet.class);
     private static final String PASSWORD_CONFIRM_NOT_MATCH = "ERR12211";
     private static final String CREATE_WALLET_ERROR = "ERR12212";
 
